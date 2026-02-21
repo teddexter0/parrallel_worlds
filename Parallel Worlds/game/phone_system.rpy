@@ -104,17 +104,17 @@ screen notification_popup(sender, message_preview):
         background "#2C2C2E"
         padding (20, 15)
         
-        at notification_slide
-        
+        at phone_notification_slide
+
         vbox:
             spacing 8
-            
+
             text "[sender]" size 18 bold True color "#FFF"
             text "[message_preview]" size 14 color "#8E8E93"
-    
+
     timer 4.0 action Hide("notification_popup")
 
-transform notification_slide:
+transform phone_notification_slide:
     yoffset -100
     alpha 0.0
     easein 0.3 yoffset 0 alpha 1.0

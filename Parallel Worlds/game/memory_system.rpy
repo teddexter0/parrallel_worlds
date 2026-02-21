@@ -5,7 +5,6 @@ init python:
     def remember(key, value):
         """Store a memory that characters can reference later"""
         memory_bank[key] = value
-        choices_made.append({"key": key, "value": value, "act": current_act, "chapter": current_chapter})
         return
     
     def recall(key):

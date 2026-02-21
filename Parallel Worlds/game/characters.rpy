@@ -106,7 +106,7 @@ init python:
     def get_character_sprite(character_name, expression, gender):
         """Return correct sprite path based on character gender"""
         if character_name == "jordan":
-            # Jordan is always male
+            # Jordan always uses the single jordan folder
             return f"images/characters/jordan/{expression}.png"
         elif character_name == "casey":
             # Casey adapts
@@ -115,11 +115,11 @@ init python:
             else:
                 return f"images/characters/casey_female/{expression}.png"
         elif character_name == "morgan":
-            # Morgan adapts
+            # Morgan adapts (TODO: add morgan_male / morgan_female image folders)
             if gender == "male":
-                return f"images/characters/morgan_male/{expression}.png"
+                return f"images/characters/riley_male/{expression}.png"
             else:
-                return f"images/characters/morgan_female/{expression}.png"
+                return f"images/characters/riley_female/{expression}.png"
         elif character_name == "riley":
             # Riley adapts
             if gender == "male":
@@ -127,8 +127,8 @@ init python:
             else:
                 return f"images/characters/riley_female/{expression}.png"
         elif character_name == "anchor":
-            # Anchor adapts
+            # Anchor adapts (TODO: add anchor_male / anchor_female image folders)
             if gender == "male":
-                return f"images/characters/anchor_male/{expression}.png"
+                return f"images/characters/jordan/{expression}.png"
             else:
-                return f"images/characters/anchor_female/{expression}.png"
+                return f"images/characters/casey_female/{expression}.png"
