@@ -70,25 +70,25 @@ label account_creation:
             $ persistent.player_gender = "female"
     
     menu:
-    "Who raised you primarily?"
-    
-    "My mother":
-        $ parent_name = "Mom"
-        $ parent_pronoun_subject = "she"
-        $ parent_pronoun_object = "her"
-        $ parent_pronoun_possessive = "her"
-    
-    "My father":
-        $ parent_name = "Dad"
-        $ parent_pronoun_subject = "he"
-        $ parent_pronoun_object = "him"
-        $ parent_pronoun_possessive = "his"
-    
-    "My guardian":
-        $ parent_name = "Guardian"
-        $ parent_pronoun_subject = "they"
-        $ parent_pronoun_object = "them"
-        $ parent_pronoun_possessive = "their"
+        "Who raised you primarily?"
+
+        "My mother":
+            $ parent_name = "Mom"
+            $ parent_pronoun_subject = "she"
+            $ parent_pronoun_object = "her"
+            $ parent_pronoun_possessive = "her"
+
+        "My father":
+            $ parent_name = "Dad"
+            $ parent_pronoun_subject = "he"
+            $ parent_pronoun_object = "him"
+            $ parent_pronoun_possessive = "his"
+
+        "My guardian":
+            $ parent_name = "Guardian"
+            $ parent_pronoun_subject = "they"
+            $ parent_pronoun_object = "them"
+            $ parent_pronoun_possessive = "their"
 
     ## Generate referral code
     $ persistent.referral_code = generate_referral_code(persistent.player_email)
@@ -130,11 +130,12 @@ label check_chapter_unlock:
     python:
         import datetime
         today = datetime.date.today()
-        
+        days_diff = 0
+
         if persistent.last_played_date:
             last_date = datetime.datetime.strptime(persistent.last_played_date, "%Y-%m-%d").date()
             days_diff = (today - last_date).days
-            
+
             if days_diff == 1:
                 ## Played yesterday - continue streak
                 persistent.play_streak += 1
@@ -147,15 +148,15 @@ label check_chapter_unlock:
         else:
             ## First time playing
             persistent.play_streak = 1
-        
+
         ## Update last played date
         persistent.last_played_date = today.strftime("%Y-%m-%d")
-        
+
         ## Unlock next chapter if it's a new day
         if persistent.chapters_unlocked < current_chapter and not persistent.paid_unlock:
             if days_diff >= 1:
                 persistent.chapters_unlocked = current_chapter
-    
+
     ## Check if current chapter is locked
     if current_chapter > persistent.chapters_unlocked and not persistent.paid_unlock:
         call screen chapter_locked
@@ -750,11 +751,95 @@ label confrontation_aftermath:
 ## (Acts 2-4 would continue from here with 15+ more major scenes)
 ## ==========================================
 
+## ==========================================
+## ACT 1 FINAL SCENE: THE REMAINING MESSAGES
+## ==========================================
+
 label act1_phone_messages:
-    
-    ## Placeholder for next scene
-    "TO BE CONTINUED..."
-    
+
+    scene bg room_night
+    play music "audio/music/ambient_city.mp3" fadein 2.0
+
+    if persistent.narrator_enabled:
+        voice "audio/narration/[persistent.narrator_voice]/act1_phone02.mp3"
+
+    "You pick up your phone."
+    "Two messages still unread — maybe more."
+
+    ## Only show Casey message if not already checked
+    if recall("first_message_checked") != "casey":
+        show screen notification_popup("Casey", "hey... is it true?")
+        pause 1.5
+        hide screen notification_popup
+
+        scene bg phone_screen
+        play sound "audio/sfx/phone_unlock.mp3"
+        pause 0.3
+
+        nvl clear
+        "CASEY" "{size=14}11:43 PM{/size}"
+        "CASEY" "hey"
+        "CASEY" "{size=14}11:44 PM{/size}"
+        "CASEY" "i heard something about you"
+        "CASEY" "{size=14}11:45 PM{/size}"
+        "CASEY" "is it true?"
+        nvl clear
+
+        $ casey_relationship += 5
+        scene bg room_night
+
+    ## Only show Unknown message if not already checked
+    if recall("first_message_checked") != "unknown":
+        show screen notification_popup("Unknown", "I know what you did...")
+        pause 1.5
+        hide screen notification_popup
+
+        scene bg phone_screen
+        play music "audio/music/tension_rising.mp3" fadein 1.0
+        play sound "audio/sfx/phone_unlock.mp3"
+        pause 0.5
+
+        nvl clear
+        "UNKNOWN" "{size=14}11:46 PM{/size}"
+        "UNKNOWN" "I know what you did."
+        pause 1.0
+        "UNKNOWN" "{size=14}11:47 PM{/size}"
+        "UNKNOWN" "You have 24 hours."
+        nvl clear
+
+        scene bg room_night
+        stop music fadeout 1.5
+        play music "audio/music/ambient_city.mp3" fadein 2.0
+
+    "You set the phone face-down on the desk."
+    pause 1.0
+    "Twenty-four hours."
+    pause 0.5
+    "From someone who knows."
+    pause 1.0
+
+    ## New message arrives
+    play sound "audio/sfx/phone_buzz.mp3"
+    pause 0.5
+
+    show screen notification_popup("Unknown", "I'm not your enemy. Library steps. 6pm tomorrow.")
+    pause 2.5
+    hide screen notification_popup
+
+    $ remember("unknown_caller_response", "message_received")
+    $ active_threads.append("The Library Steps Meeting")
+
+    if persistent.narrator_enabled:
+        voice "audio/narration/[persistent.narrator_voice]/act1_close.mp3"
+
+    "Not a threat this time."
+    pause 0.5
+    "An invitation."
+    pause 1.5
+    "You won't sleep tonight."
+
+    pause 1.0
+
     jump end_of_chapter_1
 
 label end_of_chapter_1:

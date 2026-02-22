@@ -53,7 +53,7 @@ screen referral_screen():
             
             null height 20
             
-            text "Friends Referred: [persistent.referred_friends!q]" size 18 color "#FFF"
+            text "Friends Referred: [len(persistent.referred_friends)]" size 18 color "#FFF"
             text "Chapters Unlocked via Referrals: [persistent.referral_unlocks]" size 18 color "#FFF"
             
             null height 10
