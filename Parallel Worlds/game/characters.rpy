@@ -115,20 +115,17 @@ init python:
             else:
                 return f"images/characters/casey_female/{expression}.png"
         elif character_name == "morgan":
-            # Morgan adapts (TODO: add morgan_male / morgan_female image folders)
             if gender == "male":
-                return f"images/characters/riley_male/{expression}.png"
+                return f"images/characters/morgan_male/{expression}.png"
             else:
-                return f"images/characters/riley_female/{expression}.png"
+                return f"images/characters/morgan_female/{expression}.png"
         elif character_name == "riley":
-            # Riley adapts
             if gender == "male":
                 return f"images/characters/riley_male/{expression}.png"
             else:
                 return f"images/characters/riley_female/{expression}.png"
         elif character_name == "anchor":
-            # Anchor adapts (TODO: add anchor_male / anchor_female image folders)
             if gender == "male":
-                return f"images/characters/jordan/{expression}.png"
+                return f"images/characters/anchor_male/{expression}.png"
             else:
-                return f"images/characters/casey_female/{expression}.png"
+                return f"images/characters/anchor_female/{expression}.png"
