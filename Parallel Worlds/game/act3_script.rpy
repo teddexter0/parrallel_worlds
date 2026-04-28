@@ -23,7 +23,9 @@ label act3_opening:
     show screen game_hud
 
     if persistent.narrator_enabled:
-        voice "audio/narration/[persistent.narrator_voice]/act3_open.mp3"
+        pass
+
+# voice "audio/narration/[persistent.narrator_voice]/act3_open.mp3"
 
     "Three days have passed."
     "The university posted a notice. A 'formal review of academic conduct.'"
@@ -63,7 +65,9 @@ label act3_scene_morgan_meetup:
     play sound "audio/sfx/cafe_ambience.mp3"
 
     if persistent.narrator_enabled:
-        voice "audio/narration/[persistent.narrator_voice]/act3_morgan.mp3"
+        pass
+
+# voice "audio/narration/[persistent.narrator_voice]/act3_morgan.mp3"
 
     "Morgan finds you before you find [morgan_pronoun_object]."
     "Back corner booth. Hands around a cup that's been empty for a while."
@@ -295,7 +299,9 @@ label act3_scene_jordan_side:
     scene bg campus_day
 
     if persistent.narrator_enabled:
-        voice "audio/narration/[persistent.narrator_voice]/act3_jordan.mp3"
+        pass
+
+# voice "audio/narration/[persistent.narrator_voice]/act3_jordan.mp3"
 
     "Jordan texts you that evening."
 
@@ -514,7 +520,9 @@ label act3_scene_casey_support:
     play music "audio/music/ambient_city.mp3"
 
     if persistent.narrator_enabled:
-        voice "audio/narration/[persistent.narrator_voice]/act3_casey.mp3"
+        pass
+
+# voice "audio/narration/[persistent.narrator_voice]/act3_casey.mp3"
 
     "The night before Friday."
     "You're in your room."
@@ -629,7 +637,9 @@ label act3_major_choice_approach:
     play music "audio/music/ambient_city.mp3" fadein 2.0
 
     if persistent.narrator_enabled:
-        voice "audio/narration/[persistent.narrator_voice]/act3_anchor.mp3"
+        pass
+
+# voice "audio/narration/[persistent.narrator_voice]/act3_anchor.mp3"
 
     "You go to the roof."
     "You don't know why. You just end up there."
@@ -766,7 +776,9 @@ label act3_major_choice:
     play music "audio/music/tension_rising.mp3" fadein 2.0
 
     if persistent.narrator_enabled:
-        voice "audio/narration/[persistent.narrator_voice]/act3_choice.mp3"
+        pass
+
+# voice "audio/narration/[persistent.narrator_voice]/act3_choice.mp3"
 
     "Dean Okafor's office."
     "Sunlight through old blinds."
@@ -1126,7 +1138,9 @@ label act3_aftermath_shared:
     play music "audio/music/ambient_city.mp3" fadein 2.0
 
     if persistent.narrator_enabled:
-        voice "audio/narration/[persistent.narrator_voice]/act3_aftermath.mp3"
+        pass
+
+# voice "audio/narration/[persistent.narrator_voice]/act3_aftermath.mp3"
 
     "You step out of the administration building."
     "Campus is loud."
@@ -1168,3 +1182,5 @@ label act3_aftermath_shared:
     $ renpy.save("act3_checkpoint")
 
     jump act4_opening
+
+

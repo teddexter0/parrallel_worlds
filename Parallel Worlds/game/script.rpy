@@ -930,19 +930,3 @@ label season2_teaser:
     
     return
 
-## ==========================================
-## ACT 2 PLACEHOLDER
-## ==========================================
-
-label act2_opening:
-    
-    scene black
-    
-    centered "CHAPTER 2"
-    centered "Coming Soon..."
-    
-    pause 3.0
-    
-    $ MainMenu()()
-    
-    return

@@ -123,67 +123,29 @@ image riley quiet = ConditionSwitch(
 ## Shows Null() until sprite folders are created — game won't crash.
 ## ==========================================
 
-image morgan neutral   = ConditionSwitch(
-    "morgan_gender == 'female'", "images/characters/morgan_female/neutral.png",
-    "True",                      "images/characters/morgan_male/neutral.png")
-
-image morgan serious   = ConditionSwitch(
-    "morgan_gender == 'female'", "images/characters/morgan_female/serious.png",
-    "True",                      "images/characters/morgan_male/serious.png")
-
-image morgan frustrated = ConditionSwitch(
-    "morgan_gender == 'female'", "images/characters/morgan_female/frustrated.png",
-    "True",                      "images/characters/morgan_male/frustrated.png")
-
-image morgan listening = ConditionSwitch(
-    "morgan_gender == 'female'", "images/characters/morgan_female/listening.png",
-    "True",                      "images/characters/morgan_male/listening.png")
-
-image morgan happy     = ConditionSwitch(
-    "morgan_gender == 'female'", "images/characters/morgan_female/happy.png",
-    "True",                      "images/characters/morgan_male/happy.png")
-
-image morgan sad       = ConditionSwitch(
-    "morgan_gender == 'female'", "images/characters/morgan_female/sad.png",
-    "True",                      "images/characters/morgan_male/sad.png")
+image morgan neutral    = Null()
+image morgan serious    = Null()
+image morgan frustrated = Null()
+image morgan listening  = Null()
+image morgan happy      = Null()
+image morgan sad        = Null()
 
 ## Aliases
-image morgan quiet     = ConditionSwitch(
-    "morgan_gender == 'female'", "images/characters/morgan_female/sad.png",
-    "True",                      "images/characters/morgan_male/sad.png")
-
-image morgan nervous   = ConditionSwitch(
-    "morgan_gender == 'female'", "images/characters/morgan_female/worried.png",
-    "True",                      "images/characters/morgan_male/worried.png")
-
-image morgan worried   = ConditionSwitch(
-    "morgan_gender == 'female'", "images/characters/morgan_female/worried.png",
-    "True",                      "images/characters/morgan_male/worried.png")
-
-image morgan relieved  = ConditionSwitch(
-    "morgan_gender == 'female'", "images/characters/morgan_female/happy.png",
-    "True",                      "images/characters/morgan_male/happy.png")
+image morgan quiet      = Null()
+image morgan nervous    = Null()
+image morgan worried    = Null()
+image morgan relieved   = Null()
 
 ## ==========================================
 ## ANCHOR (gender-dynamic: needs anchor_male / anchor_female folders)
 ## ==========================================
 
-image anchor neutral   = ConditionSwitch(
-    "anchor_gender == 'female'", "images/characters/anchor_female/neutral.png",
-    "True",                      "images/characters/anchor_male/neutral.png")
-
-image anchor serious   = ConditionSwitch(
-    "anchor_gender == 'female'", "images/characters/anchor_female/serious.png",
-    "True",                      "images/characters/anchor_male/serious.png")
-
-image anchor listening = ConditionSwitch(
-    "anchor_gender == 'female'", "images/characters/anchor_female/listening.png",
-    "True",                      "images/characters/anchor_male/listening.png")
+image anchor neutral   = Null()
+image anchor serious   = Null()
+image anchor listening = Null()
 
 ## Aliases
-image anchor quiet     = ConditionSwitch(
-    "anchor_gender == 'female'", "images/characters/anchor_female/sad.png",
-    "True",                      "images/characters/anchor_male/sad.png")
+image anchor quiet     = Null()
 
 ## ==========================================
 ## PARENT (needs parent/ folder — Null until created)

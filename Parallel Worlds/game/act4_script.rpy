@@ -24,7 +24,9 @@ label act4_opening:
     show screen game_hud
 
     if persistent.narrator_enabled:
-        voice "audio/narration/[persistent.narrator_voice]/act4_open.mp3"
+        pass
+
+# voice "audio/narration/[persistent.narrator_voice]/act4_open.mp3"
 
     "Two weeks later."
     "The university posted a statement."
@@ -64,7 +66,9 @@ label act4_path_A_testified:
     scene bg campus_day
 
     if persistent.narrator_enabled:
-        voice "audio/narration/[persistent.narrator_voice]/act4_pathA.mp3"
+        pass
+
+# voice "audio/narration/[persistent.narrator_voice]/act4_pathA.mp3"
 
     "The first few days after, some people don't look at you."
     "Students who benefited from Harkins's system."
@@ -107,7 +111,9 @@ label act4_A_riley_response:
     show riley neutral at center
 
     if persistent.narrator_enabled:
-        voice "audio/narration/[persistent.narrator_voice]/act4_A_riley.mp3"
+        pass
+
+# voice "audio/narration/[persistent.narrator_voice]/act4_A_riley.mp3"
 
     "Riley finds you at the library steps."
     "Same spot as before."
@@ -145,7 +151,9 @@ label act4_A_jordan_response:
     show jordan neutral at left
 
     if persistent.narrator_enabled:
-        voice "audio/narration/[persistent.narrator_voice]/act4_A_jordan.mp3"
+        pass
+
+# voice "audio/narration/[persistent.narrator_voice]/act4_A_jordan.mp3"
 
     "Jordan is waiting outside your class."
 
@@ -196,7 +204,9 @@ label act4_path_B_silent:
     scene bg campus_day
 
     if persistent.narrator_enabled:
-        voice "audio/narration/[persistent.narrator_voice]/act4_pathB.mp3"
+        pass
+
+# voice "audio/narration/[persistent.narrator_voice]/act4_pathB.mp3"
 
     "Riley's testimony went in alone."
     "Without corroboration."
@@ -356,7 +366,9 @@ label act4_path_C_deal:
     scene bg campus_day
 
     if persistent.narrator_enabled:
-        voice "audio/narration/[persistent.narrator_voice]/act4_pathC.mp3"
+        pass
+
+# voice "audio/narration/[persistent.narrator_voice]/act4_pathC.mp3"
 
     "You testified."
     "But not before you got your guarantees."
@@ -509,7 +521,9 @@ label act4_shared_morgan_check:
     scene bg campus_day
 
     if persistent.narrator_enabled:
-        voice "audio/narration/[persistent.narrator_voice]/act4_morgan.mp3"
+        pass
+
+# voice "audio/narration/[persistent.narrator_voice]/act4_morgan.mp3"
 
     "Morgan messages you."
 
@@ -601,7 +615,9 @@ label act4_shared_final_anchor:
     play music "audio/music/ambient_city.mp3" fadein 2.0
 
     if persistent.narrator_enabled:
-        voice "audio/narration/[persistent.narrator_voice]/act4_anchor_final.mp3"
+        pass
+
+# voice "audio/narration/[persistent.narrator_voice]/act4_anchor_final.mp3"
 
     "The roof."
     "Last time for a while, maybe."
@@ -797,7 +813,9 @@ label act4_final_ending:
     play music "audio/music/ambient_city.mp3" fadein 2.0
 
     if persistent.narrator_enabled:
-        voice "audio/narration/[persistent.narrator_voice]/act4_final.mp3"
+        pass
+
+# voice "audio/narration/[persistent.narrator_voice]/act4_final.mp3"
 
     "Your room."
     "Late."
@@ -972,3 +990,5 @@ label act4_game_end:
         jump season2_teaser
     else:
         return
+
+

@@ -23,7 +23,9 @@ label act2_opening:
     show screen game_hud
 
     if persistent.narrator_enabled:
-        voice "audio/narration/[persistent.narrator_voice]/act2_open.mp3"
+        pass
+
+# voice "audio/narration/[persistent.narrator_voice]/act2_open.mp3"
 
     "The next morning hits like a wall of light."
     "Campus looks the same."
@@ -50,7 +52,9 @@ label act2_scene_campus_walk:
     play music "audio/music/ambient_city.mp3"
 
     if persistent.narrator_enabled:
-        voice "audio/narration/[persistent.narrator_voice]/act2_campus.mp3"
+        pass
+
+# voice "audio/narration/[persistent.narrator_voice]/act2_campus.mp3"
 
     "The quad is busy."
     "Groups of students. Laughter. Coffee cups."
@@ -167,7 +171,9 @@ label act2_scene_casey_confrontation:
     play sound "audio/sfx/cafe_ambience.mp3"
 
     if persistent.narrator_enabled:
-        voice "audio/narration/[persistent.narrator_voice]/act2_casey.mp3"
+        pass
+
+# voice "audio/narration/[persistent.narrator_voice]/act2_casey.mp3"
 
     "You find a corner of the campus café."
     "Coffee. Headphones. Your own head."
@@ -397,7 +403,9 @@ label act2_scene_morgan_text:
     scene bg campus_day
 
     if persistent.narrator_enabled:
-        voice "audio/narration/[persistent.narrator_voice]/act2_morgan.mp3"
+        pass
+
+# voice "audio/narration/[persistent.narrator_voice]/act2_morgan.mp3"
 
     play sound "audio/sfx/phone_buzz.mp3"
     pause 0.3
@@ -520,7 +528,9 @@ label act2_scene_riley_reveal:
     play music "audio/music/tension_rising.mp3" fadein 2.0
 
     if persistent.narrator_enabled:
-        voice "audio/narration/[persistent.narrator_voice]/act2_riley.mp3"
+        pass
+
+# voice "audio/narration/[persistent.narrator_voice]/act2_riley.mp3"
 
     "6 PM."
     "The library steps are mostly empty."
@@ -801,7 +811,9 @@ label act2_scene_anchor:
     play music "audio/music/ambient_city.mp3"
 
     if persistent.narrator_enabled:
-        voice "audio/narration/[persistent.narrator_voice]/act2_anchor.mp3"
+        pass
+
+# voice "audio/narration/[persistent.narrator_voice]/act2_anchor.mp3"
 
     "You end up on the roof of the humanities building."
     "You don't know why. You just kept walking up stairs."
@@ -1011,3 +1023,5 @@ label act2_chapter_end:
     $ renpy.save("act2_checkpoint")
 
     jump act3_opening
+
+
