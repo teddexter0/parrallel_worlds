@@ -47,6 +47,12 @@ default anchor_pronoun_subject = "he"
 default anchor_pronoun_object = "him"
 default anchor_pronoun_possessive = "his"
 
+## PARENT PRONOUNS (set during account creation)
+default parent_name = "Parent"
+default parent_pronoun_subject = "they"
+default parent_pronoun_object = "them"
+default parent_pronoun_possessive = "their"
+
 ## ROMANTIC PURSUIT TRACKING
 default pursuing_jordan = False
 default pursuing_casey = False

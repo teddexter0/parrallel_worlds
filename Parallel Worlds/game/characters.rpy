@@ -3,14 +3,7 @@
 
 ## Define characters with dynamic pronouns
 define narrator = Character(None, kind=nvl)
-define parent = DynamicCharacter("parent_name",
-    image="parent",
-    who_color="#8B4513")
 
-default parent_name = "Parent"
-default parent_pronoun_subject = "they"
-default parent_pronoun_object = "them"
-default parent_pronoun_possessive = "their"
 define jordan = DynamicCharacter("jordan_name", 
     image="jordan",
     who_color="#4A90E2")
@@ -30,6 +23,10 @@ define riley = DynamicCharacter("riley_name",
 define anchor = DynamicCharacter("anchor_name",
     image="anchor",
     who_color="#27AE60")
+
+define parent = DynamicCharacter("parent_name",
+    image="parent",
+    who_color="#8B4513")
 
 ## Character names (displayed in dialogue)
 default jordan_name = "Jordan"
