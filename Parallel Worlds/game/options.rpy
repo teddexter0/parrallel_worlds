@@ -44,6 +44,7 @@ default persistent.referral_unlocks = 0
 default persistent.player_email = None
 default persistent.player_name = None
 default persistent.player_gender = None
+default persistent.seen_web_howto = False
 
 ## Season 2 teaser
 default persistent.seen_teaser = False

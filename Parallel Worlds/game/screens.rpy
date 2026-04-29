@@ -8,6 +8,9 @@ screen main_menu():
     
     ## Background
     add "gui/main_menu.png"
+
+    if not persistent.seen_web_howto:
+        use web_howto_popup
     
     frame:
         xalign 0.5
@@ -79,6 +82,50 @@ screen main_menu():
                 text_color "#FFF"
                 text_size 20
                 text_xalign 0.5
+
+    textbutton "HOW TO PLAY":
+        action Show("web_howto_popup")
+        xalign 0.98
+        yalign 0.04
+        background "#0a0a0aCC"
+        padding (18, 10)
+        hover_background "#1f1f1fDD"
+        text_color "#FFF"
+        text_size 18
+        text_xalign 0.5
+
+screen web_howto_popup():
+
+    modal True
+    zorder 200
+
+    frame:
+        xalign 0.5
+        yalign 0.24
+        xsize 760
+        background "#050505EE"
+        padding (40, 30)
+
+        vbox:
+            spacing 20
+
+            text "HOW TO PLAY" size 34 xalign 0.5 color "#FFD700" bold True
+            text "1. Click NEW GAME to start. CONTINUE only works if you already have a save." size 20 color "#FFF" xalign 0.5 text_align 0.5
+            text "2. On web, the browser usually needs your first click before audio can start." size 20 color "#FFF" xalign 0.5 text_align 0.5
+            text "3. Advance dialogue by clicking, pressing Space, or Enter. Choices appear as large buttons." size 20 color "#FFF" xalign 0.5 text_align 0.5
+            text "4. Use the menu icon inside the game to import or export saves." size 20 color "#FFF" xalign 0.5 text_align 0.5
+            text "Current build note: some art and audio are placeholder assets." size 18 color "#F39C12" xalign 0.5 text_align 0.5
+
+            null height 8
+
+            textbutton "START PLAYING":
+                action [SetField(persistent, "seen_web_howto", True), Hide("web_howto_popup")]
+                xalign 0.5
+                background "#4A90E2"
+                padding (30, 12)
+                hover_background "#357ABD"
+                text_color "#FFF"
+                text_size 18
 
 ## In-game HUD
 screen game_hud():
