@@ -11,4 +11,6 @@ A choice-driven narrative game about identity, connection, and consequences.
 Alpha - Core mechanics functional
 
 ## Play
-Coming soon to web & mobile
+Web build: https://teddexter0.github.io/parrallel_worlds/
+
+If GitHub Pages is still provisioning, the site may take a few minutes to appear after a push to `main`.
