@@ -168,9 +168,9 @@ image bg library_steps_evening = "images/bg/library_steps_evening.png"
 image bg cafe                 = "images/bg/cafe.png"
 image bg rooftop_night        = "images/bg/rooftop_night.png"
 image bg dean_office          = "images/bg/dean_office.png"
-image bg room_night = "images/bg/room_night.png"
-image bg phone_screen = "images/bg/phone_screen.png"
-image bg kitchen_morning = "images/bg/kitchen_morning.png"
-image bg unknown_location = "images/bg/unknown_location.png"
+image bg room_night = "images/bg/rooftop_night.png"
+image bg phone_screen = Solid("#121b2b")
+image bg kitchen_morning = "images/bg/campus_day.png"
+image bg unknown_location = "images/bg/dean_office.png"
 
 image white = Solid("#ffffff")

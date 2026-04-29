@@ -184,7 +184,7 @@ label act1_opening:
     $ current_act = 1
     
     scene bg room_night
-    # play music "audio/music/ambient_city.mp3" fadein 2.0
+    play music "audio/music/ambient_city.mp3" fadein 2.0
     
     show screen game_hud
     
@@ -199,7 +199,7 @@ label act1_opening:
     pause 1.0
     
     "Your phone vibrates."
-    # play sound "audio/sfx/phone_buzz.mp3"
+    play sound "audio/sfx/phone_buzz.mp3"
     pause 0.5
     
     show screen notification_popup("Parent", "We need to talk.")
@@ -211,7 +211,7 @@ label act1_opening:
     pause 1.0
     
     "Before you can react, it buzzes again."
-    # play sound "audio/sfx/phone_buzz.mp3"
+    play sound "audio/sfx/phone_buzz.mp3"
     pause 0.5
     
     show screen notification_popup("Casey", "I heard something...")
@@ -223,7 +223,7 @@ label act1_opening:
     pause 1.0
     
     "Then a third buzz."
-    # play sound "audio/sfx/phone_buzz.mp3"
+    play sound "audio/sfx/phone_buzz.mp3"
     pause 0.5
     
     show screen notification_popup("Unknown", "I know what you did.")
@@ -263,7 +263,7 @@ label check_authority_first:
     $ choices_made.append("Checked parent message first")
     
     scene bg phone_screen
-    # play sound "audio/sfx/phone_unlock.mp3"
+    play sound "audio/sfx/phone_unlock.mp3"
     
     pause 0.5
     
@@ -305,7 +305,7 @@ label check_casey_first:
     $ choices_made.append("Checked Casey message first")
     
     scene bg phone_screen
-    # play sound "audio/sfx/phone_unlock.mp3"
+    play sound "audio/sfx/phone_unlock.mp3"
     
     pause 0.5
     
@@ -351,8 +351,8 @@ label check_unknown_first:
     $ choices_made.append("Checked unknown message first")
     
     scene bg phone_screen
-    # play sound "audio/sfx/phone_unlock.mp3"
-    # play music "audio/music/tension_rising.mp3" fadein 1.0
+    play sound "audio/sfx/phone_unlock.mp3"
+    play music "audio/music/tension_rising.mp3" fadein 1.0
     
     pause 0.5
     
@@ -388,8 +388,8 @@ label check_unknown_first:
     hide screen insight_popup
     
     scene bg room_night
-    # stop music fadeout 2.0
-    # play music "audio/music/ambient_city.mp3" fadein 2.0
+    stop music fadeout 2.0
+    play music "audio/music/ambient_city.mp3" fadein 2.0
     
     "You set the phone down."
     "Your chest feels tight."
@@ -424,11 +424,11 @@ label ignore_all_messages:
     pause
     hide screen insight_popup
     
-    # play sound "audio/sfx/phone_buzz.mp3"
+    play sound "audio/sfx/phone_buzz.mp3"
     pause 0.3
-    # play sound "audio/sfx/phone_buzz.mp3"
+    play sound "audio/sfx/phone_buzz.mp3"
     pause 0.3
-    # play sound "audio/sfx/phone_buzz.mp3"
+    play sound "audio/sfx/phone_buzz.mp3"
     
     "Your phone keeps buzzing."
     "But you don't look."
@@ -487,7 +487,7 @@ label post_first_message_check:
 label act1_morning_confrontation:
     
     scene bg kitchen_morning
-    # play music "audio/music/ambient_city.mp3" fadein 2.0
+    play music "audio/music/ambient_city.mp3" fadein 2.0
     
     if persistent.narrator_enabled:
         pass
@@ -737,7 +737,7 @@ label confrontation_aftermath:
     pause 1.0
     
     "Your phone buzzes."
-    # play sound "audio/sfx/phone_buzz.mp3"
+    play sound "audio/sfx/phone_buzz.mp3"
     
     "Another message."
     
@@ -750,7 +750,7 @@ label confrontation_aftermath:
 label act1_cliffhanger:
     
     scene bg room_night
-    # play music "audio/music/tension_rising.mp3" fadein 2.0
+    play music "audio/music/tension_rising.mp3" fadein 2.0
     
     "Back in your room, you finally check your phone."
     
@@ -805,7 +805,7 @@ label act1_cliffhanger:
     scene black
     
     ## Distorted audio effect (if you add audio later)
-    # play sound "audio/sfx/video_static.mp3"
+    play sound "audio/sfx/chair_scrape.mp3"
     
     "..."
     
@@ -828,7 +828,7 @@ label act1_cliffhanger:
     pause 1.5
     
     ## Phone rings
-    # play sound "audio/sfx/phone_ring.mp3"
+    play sound "audio/sfx/phone_buzz.mp3"
     
     "Your phone rings."
     
@@ -892,7 +892,7 @@ label season2_teaser:
     pause 2.0
     
     scene bg unknown_location
-    # play music "audio/music/tension_rising.mp3"
+    play music "audio/music/tension_rising.mp3"
     
     "???" "You thought it was over?"
     
@@ -903,7 +903,7 @@ label season2_teaser:
     pause 1.0
     
     scene black with dissolve
-    # stop music fadeout 2.0
+    stop music fadeout 2.0
     
     centered "{size=48}PARALLEL WORLDS{/size}"
     pause 1.0
