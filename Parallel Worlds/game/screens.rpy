@@ -14,117 +14,184 @@ screen main_menu():
     add "gui/main_menu.png"
     add Solid("#07141fcc")
 
-    frame:
-        xalign 0.08
-        yalign 0.52
-        xsize 760
-        ysize 860
-        background "#08131dee"
-        padding (55, 50)
-
-        vbox:
-            spacing 24
-
-            text "PARALLEL WORLDS" size 66 color "#f5fbff" bold True
-            text "A social thriller about pressure, secrets, and who you become online and off." size 23 color "#8ecae6" xmaximum 620
-
-            null height 8
-
-            textbutton "NEW GAME":
-                action Start()
-                xsize 430
-                background "#2ec4b6"
-                padding (28, 20)
-                hover_background "#43dbc7"
-                text_color "#04111a"
-                text_size 28
-                text_xalign 0.5
-
-            textbutton "CONTINUE":
-                action ShowMenu("load")
-                xsize 430
-                background "#ff9f1c"
-                padding (28, 20)
-                hover_background "#ffb347"
-                text_color "#1d1200"
-                text_size 28
-                text_xalign 0.5
-
-            textbutton "SETTINGS":
-                action ShowMenu("preferences")
-                xsize 430
-                background "#5e60ce"
-                padding (28, 20)
-                hover_background "#7275da"
-                text_color "#f8f9ff"
-                text_size 24
-                text_xalign 0.5
-
-            textbutton "REFER FRIENDS":
-                action Show("referral_screen")
-                xsize 430
-                background "#ef476f"
-                padding (28, 20)
-                hover_background "#f06184"
-                text_color "#fff8fb"
-                text_size 24
-                text_xalign 0.5
-
-            textbutton "QUIT":
-                action Quit(confirm=True)
-                xsize 430
-                background "#1f2a35"
-                padding (28, 20)
-                hover_background "#334556"
-                text_color "#f5fbff"
-                text_size 22
-                text_xalign 0.5
-
-    frame:
-        xalign 0.80
-        yalign 0.36
-        xsize 620
-        background "#0e1d2bdd"
-        padding (34, 30)
-
-        vbox:
-            spacing 18
-
-            text "PLAY ON WEB" size 32 color "#f5fbff" bold True
-            text "Tap or click NEW GAME first. Browser audio normally unlocks after your first interaction." size 21 color "#d9f2ff" xmaximum 540
+    if ui_is_small():
+        frame:
+            xalign 0.5
+            yalign 0.5
+            xsize 1740
+            ymaximum 1010
+            background "#08131df2"
+            padding (54, 42)
 
             hbox:
-                spacing 14
+                spacing 44
+
+                vbox:
+                    spacing 20
+                    xsize 720
+
+                    text "Parallel Worlds" size 56 color "#f5fbff" bold True
+                    text "A choice-driven text RPG about pressure, secrets, and who you become." size 31 color "#b8e8f7" xmaximum 690
+
+                    null height 4
+
+                    textbutton "New Game":
+                        action Start()
+                        xsize 520
+                        background "#2ec4b6"
+                        padding (32, 20)
+                        hover_background "#43dbc7"
+                        text_color "#04111a"
+                        text_size 32
+                        text_xalign 0.5
+
+                    textbutton "Continue":
+                        action ShowMenu("load")
+                        xsize 520
+                        background "#ff9f1c"
+                        padding (32, 20)
+                        hover_background "#ffb347"
+                        text_color "#1d1200"
+                        text_size 32
+                        text_xalign 0.5
+
+                    hbox:
+                        spacing 16
+
+                        textbutton "Settings":
+                            action ShowMenu("preferences")
+                            xsize 252
+                            background "#26384a"
+                            padding (24, 16)
+                            hover_background "#31495d"
+                            text_color "#f8f9ff"
+                            text_size 25
+                            text_xalign 0.5
+
+                        textbutton "Quit":
+                            action Quit(confirm=True)
+                            xsize 252
+                            background "#26384a"
+                            padding (24, 16)
+                            hover_background "#31495d"
+                            text_color "#f5fbff"
+                            text_size 25
+                            text_xalign 0.5
 
                 frame:
-                    xsize 258
-                    background "#14324acc"
-                    padding (20, 18)
+                    xsize 840
+                    background "#0e1d2be8"
+                    padding (36, 32)
 
                     vbox:
-                        spacing 10
-                        text "HOW IT FEELS" size 20 color "#72ddf7" bold True
-                        text "Branching dialogue, message screens, pop-up alerts, and relationship choices." size 17 color "#eef8ff"
+                        spacing 20
 
-                frame:
-                    xsize 258
-                    background "#2d1532cc"
-                    padding (20, 18)
+                        text "How to play" size 40 color "#f5fbff" bold True
+                        text "Read the scene, tap anywhere to move forward, then choose a response when the choice cards appear." size 29 color "#d9f2ff" xmaximum 760
+                        text "Choices affect relationships, unlocked clues, and how later scenes read you." size 27 color "#b8e8f7" xmaximum 760
+                        text "Use Records during play to review people, clues, and emotional stats." size 27 color "#b8e8f7" xmaximum 760
 
-                    vbox:
-                        spacing 10
-                        text "CURRENT BUILD" size 20 color "#ff8fab" bold True
-                        text "Some art and sound are still placeholder assets, but the story flow is playable." size 17 color "#fff0f4"
+                        textbutton "Open quick guide":
+                            action Show("web_howto_popup")
+                            background "#f5fbff"
+                            padding (28, 15)
+                            hover_background "#d6f3ff"
+                            text_color "#07141f"
+                            text_size 25
+                            text_xalign 0.5
+                            xalign 0.0
 
-            textbutton "HOW TO PLAY":
-                action Show("web_howto_popup")
-                background "#f5fbff"
-                padding (22, 14)
-                hover_background "#d6f3ff"
-                text_color "#07141f"
-                text_size 20
-                text_xalign 0.5
-                xalign 0.0
+    else:
+        frame:
+            xalign 0.07
+            yalign 0.52
+            xsize 690
+            ysize 760
+            background "#08131dee"
+            padding (48, 42)
+
+            vbox:
+                spacing 20
+
+                text "Parallel Worlds" size 58 color "#f5fbff" bold True
+                text "A choice-driven text RPG about pressure, secrets, and who you become." size 24 color "#b8e8f7" xmaximum 580
+
+                null height 4
+
+                textbutton "New Game":
+                    action Start()
+                    xsize 410
+                    background "#2ec4b6"
+                    padding (26, 17)
+                    hover_background "#43dbc7"
+                    text_color "#04111a"
+                    text_size 28
+                    text_xalign 0.5
+
+                textbutton "Continue":
+                    action ShowMenu("load")
+                    xsize 410
+                    background "#ff9f1c"
+                    padding (26, 17)
+                    hover_background "#ffb347"
+                    text_color "#1d1200"
+                    text_size 28
+                    text_xalign 0.5
+
+                textbutton "Settings":
+                    action ShowMenu("preferences")
+                    xsize 410
+                    background "#26384a"
+                    padding (24, 15)
+                    hover_background "#31495d"
+                    text_color "#f8f9ff"
+                    text_size 23
+                    text_xalign 0.5
+
+                textbutton "Refer Friends":
+                    action Show("referral_screen")
+                    xsize 410
+                    background "#7c3058"
+                    padding (24, 15)
+                    hover_background "#91406a"
+                    text_color "#fff8fb"
+                    text_size 23
+                    text_xalign 0.5
+
+                textbutton "Quit":
+                    action Quit(confirm=True)
+                    xsize 410
+                    background "#1f2a35"
+                    padding (22, 14)
+                    hover_background "#334556"
+                    text_color "#f5fbff"
+                    text_size 21
+                    text_xalign 0.5
+
+        frame:
+            xalign 0.78
+            yalign 0.46
+            xsize 690
+            background "#0e1d2bdd"
+            padding (36, 32)
+
+            vbox:
+                spacing 18
+
+                text "How to play" size 36 color "#f5fbff" bold True
+                text "Read the scene, click or tap to continue, then choose your response when the cards appear." size 23 color "#d9f2ff" xmaximum 600
+                text "Choices affect relationships, unlocked clues, and how later scenes respond to you." size 22 color "#b8e8f7" xmaximum 600
+                text "Use Records during play to review people, clues, and emotional stats." size 22 color "#b8e8f7" xmaximum 600
+
+                textbutton "Quick guide":
+                    action Show("web_howto_popup")
+                    background "#f5fbff"
+                    padding (22, 14)
+                    hover_background "#d6f3ff"
+                    text_color "#07141f"
+                    text_size 20
+                    text_xalign 0.5
+                    xalign 0.0
 
     if not persistent.seen_web_howto:
         use web_howto_popup(first_time=True)
@@ -140,27 +207,26 @@ screen web_howto_popup(first_time=False):
     frame:
         xalign 0.5
         yalign 0.52
-        xsize 980
+        xsize (1720 if ui_is_small() else 980)
         background "#0b1621f6"
-        padding (42, 34)
+        padding (48 if ui_is_small() else 42, 36 if ui_is_small() else 34)
 
         vbox:
-            spacing 18
+            spacing (22 if ui_is_small() else 18)
 
-            text "HOW TO PLAY" size 42 xalign 0.5 color "#f5fbff" bold True
-            text "Think of this build like an interactive drama feed: read, tap forward, and pick your response when cards appear." size 23 xalign 0.5 color "#8ecae6" text_align 0.5
+            text "How to play" size (50 if ui_is_small() else 42) xalign 0.5 color "#f5fbff" bold True
+            text "Read the scene, move forward, then pick your response when choice cards appear." size (31 if ui_is_small() else 23) xalign 0.5 color "#8ecae6" text_align 0.5
 
             frame:
                 background "#122638"
-                padding (24, 22)
+                padding (28, 24)
 
                 vbox:
-                    spacing 12
-                    text "1. Start with NEW GAME. CONTINUE only works after you have a save." size 21 color "#f5fbff"
-                    text "2. Advance with click, tap, Space, or Enter." size 21 color "#f5fbff"
-                    text "3. Choice cards now appear away from the browser menu so they are easier to hit." size 21 color "#f5fbff"
-                    text "4. If sound is silent, interact once and check the in-game Preferences volume." size 21 color "#f5fbff"
-                    text "5. Use RECORDS during play to review unlocked clues and relationship state." size 21 color "#f5fbff"
+                    spacing (16 if ui_is_small() else 12)
+                    text "1. Start with New Game. Continue only works after you save." size (29 if ui_is_small() else 21) color "#f5fbff"
+                    text "2. Advance with tap, click, Space, or Enter." size (29 if ui_is_small() else 21) color "#f5fbff"
+                    text "3. When choices appear, pick the response you want to live with." size (29 if ui_is_small() else 21) color "#f5fbff"
+                    text "4. Records keeps track of clues, people, and emotional stats." size (29 if ui_is_small() else 21) color "#f5fbff"
 
             hbox:
                 spacing 20
@@ -194,16 +260,16 @@ screen say(who, what):
         xalign 0.5
         yalign 1.0
         xfill True
-        ysize 320
-        left_padding 90
-        right_padding 90
-        top_padding 34
-        bottom_padding 42
+        ysize (360 if ui_is_small() else 300)
+        left_padding (72 if ui_is_small() else 90)
+        right_padding (72 if ui_is_small() else 90)
+        top_padding (30 if ui_is_small() else 32)
+        bottom_padding (38 if ui_is_small() else 38)
 
         if who is not None:
-            text who id "who" color "#72ddf7" size 34 bold True xpos 0 ypos 0
+            text who id "who" color "#72ddf7" size (40 if ui_is_small() else 30) bold True xpos 0 ypos 0
 
-        text what id "what" color "#f5fbff" size 34 xpos 0 ypos 62 xmaximum 1500
+        text what id "what" color "#f5fbff" size (42 if ui_is_small() else 32) xpos 0 ypos (70 if ui_is_small() else 58) xmaximum (1700 if ui_is_small() else 1500)
 
 
 screen choice(items):
@@ -213,20 +279,20 @@ screen choice(items):
 
     frame:
         if ui_is_small():
-            xpos 32
-            xsize 1016
-            yalign 0.43
+            xalign 0.5
+            xsize 1720
+            yalign 0.46
         else:
-            xpos 86
-            xsize 760
+            xalign 0.08
+            xsize 780
             yalign 0.44
         background "#091723ed"
-        padding (28, 28)
+        padding (34 if ui_is_small() else 28, 30 if ui_is_small() else 28)
 
         vbox:
-            spacing 18
+            spacing (22 if ui_is_small() else 18)
 
-            text "Choose your move" size 23 color "#8ecae6" bold True
+            text "Choose your move" size (30 if ui_is_small() else 23) color "#8ecae6" bold True
 
             for i in items:
                 button:
@@ -234,12 +300,12 @@ screen choice(items):
                     xfill True
                     background "#14324a"
                     hover_background "#214e70"
-                    padding (24, 20)
+                    padding (30 if ui_is_small() else 24, 22 if ui_is_small() else 20)
 
                     text i.caption:
                         color "#f5fbff"
                         hover_color "#ffffff"
-                        size (24 if not ui_is_small() else 30)
+                        size (34 if ui_is_small() else 24)
                         xalign 0.0
 
 
@@ -249,12 +315,12 @@ screen game_hud():
     use records_button
 
     frame:
-        xalign 0.965
-        yalign 0.05
+        xalign (0.98 if ui_is_small() else 0.965)
+        yalign (0.035 if ui_is_small() else 0.05)
         background "#0b1621dd"
-        padding (16, 10)
+        padding (18 if ui_is_small() else 16, 10)
 
-        text "Chapter [current_chapter] | Act [current_act]" size 16 color "#f5fbff"
+        text "Chapter [current_chapter] | Act [current_act]" size (22 if ui_is_small() else 16) color "#f5fbff"
 
 
 ## General notification system
