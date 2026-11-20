@@ -95,6 +95,33 @@ label assign_character_genders:
         $ anchor_pronoun_subject = "she"
         $ anchor_pronoun_object = "her"
         $ anchor_pronoun_possessive = "her"
+
+    else:
+        ## Non-binary player route uses a deliberately mixed supporting cast.
+        $ jordan_gender = "male"
+        $ jordan_pronoun_subject = "he"
+        $ jordan_pronoun_object = "him"
+        $ jordan_pronoun_possessive = "his"
+
+        $ casey_gender = "female"
+        $ casey_pronoun_subject = "she"
+        $ casey_pronoun_object = "her"
+        $ casey_pronoun_possessive = "her"
+
+        $ morgan_gender = "male"
+        $ morgan_pronoun_subject = "he"
+        $ morgan_pronoun_object = "him"
+        $ morgan_pronoun_possessive = "his"
+
+        $ riley_gender = "female"
+        $ riley_pronoun_subject = "she"
+        $ riley_pronoun_object = "her"
+        $ riley_pronoun_possessive = "her"
+
+        $ anchor_gender = "female"
+        $ anchor_pronoun_subject = "she"
+        $ anchor_pronoun_object = "her"
+        $ anchor_pronoun_possessive = "her"
     
     return
 
@@ -112,17 +139,13 @@ init python:
             else:
                 return f"images/characters/casey_female/{expression}.png"
         elif character_name == "morgan":
-            if gender == "male":
-                return f"images/characters/morgan_male/{expression}.png"
-            else:
-                return f"images/characters/morgan_female/{expression}.png"
+            return f"images/characters/morgan/{expression}.png"
         elif character_name == "riley":
             if gender == "male":
                 return f"images/characters/riley_male/{expression}.png"
             else:
                 return f"images/characters/riley_female/{expression}.png"
         elif character_name == "anchor":
-            if gender == "male":
-                return f"images/characters/anchor_male/{expression}.png"
-            else:
-                return f"images/characters/anchor_female/{expression}.png"
+            return f"images/characters/anchor/{expression}.png"
+        elif character_name == "parent":
+            return f"images/characters/parent/{expression}.png"

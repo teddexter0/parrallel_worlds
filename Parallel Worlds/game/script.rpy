@@ -6,23 +6,22 @@
 ## ==========================================
 
 label start:
-    
-    ## Check if player has account
-    if not persistent.player_email:
-        call account_creation from _call_account_creation
-    
-    ## Check narrator preference
-    if persistent.narrator_enabled is None:
-        call narrator_setup from _call_narrator_setup
-    
-    ## Check chapter unlock status
-    call check_chapter_unlock from _call_check_chapter_unlock
+
+    ## Local-first profile. No account, email, payment, or server is required.
+    if not persistent.player_name:
+        call player_setup from _call_player_setup
+
+    $ parent_name = persistent.parent_name
+    $ parent_pronoun_subject = persistent.parent_pronoun_subject
+    $ parent_pronoun_object = persistent.parent_pronoun_object
+    $ parent_pronoun_possessive = persistent.parent_pronoun_possessive
     
     ## Gender assignment
     call assign_character_genders from _call_assign_character_genders
     
-    ## Show disclaimer
-    call show_disclaimer from _call_show_disclaimer
+    ## Show the content notice once per browser/device.
+    if not persistent.seen_content_notice:
+        call show_disclaimer from _call_show_disclaimer
     
     ## Start game
     jump act1_opening
@@ -32,146 +31,61 @@ label start:
 ## ==========================================
 
 label show_disclaimer:
-    
     scene black
-    
-    centered "PARALLEL WORLDS"
-    pause 1.0
-    centered "This is a story about choices and consequences."
-    pause 1.0
-    centered "Your decisions matter. There's no going back."
-    pause 1.5
-    centered "Play at your own pace. Every choice echoes forward."
-    pause 2.0
-    
+
+    "Content note: This story includes coercion, harassment, threats, and institutional abuse. You can save or step away from the Pause menu."
+
+    $ persistent.seen_content_notice = True
+    $ renpy.save_persistent()
+
     return
 
-label account_creation:
-    
+label player_setup:
     scene bg room_night
-    
-    centered "Welcome to Parallel Worlds."
-    pause 1.0
-    centered "Before we begin, let's set up your account."
-    
-    $ player_email = renpy.input("Enter your email:", default="your@email.com")
-    $ persistent.player_email = player_email.strip()
-    
-    $ player_name = renpy.input("What's your name?", default="Alex")
-    $ persistent.player_name = player_name.strip()
-    
+
+    $ player_name = renpy.input("What should the story call you?", default="Alex", length=24, exclude="{}[]")
+    $ setup_name = player_name.strip() or "Alex"
+
     menu:
-        "Select your gender:"
-        
-        "Male":
+        "How should the story frame your character?"
+
+        "Man":
             $ persistent.player_gender = "male"
-        
-        "Female":
+
+        "Woman":
             $ persistent.player_gender = "female"
-    
+
+        "Non-binary":
+            $ persistent.player_gender = "nonbinary"
+
     menu:
         "Who raised you primarily?"
-        
+
         "My mother":
-            $ parent_name = "Mom"
-            $ parent_pronoun_subject = "she"
-            $ parent_pronoun_object = "her"
-            $ parent_pronoun_possessive = "her"
-        
+            $ persistent.parent_name = "Mom"
+            $ persistent.parent_pronoun_subject = "she"
+            $ persistent.parent_pronoun_object = "her"
+            $ persistent.parent_pronoun_possessive = "her"
+
         "My father":
-            $ parent_name = "Dad"
-            $ parent_pronoun_subject = "he"
-            $ parent_pronoun_object = "him"
-            $ parent_pronoun_possessive = "his"
-        
+            $ persistent.parent_name = "Dad"
+            $ persistent.parent_pronoun_subject = "he"
+            $ persistent.parent_pronoun_object = "him"
+            $ persistent.parent_pronoun_possessive = "his"
+
         "My guardian":
-            $ parent_name = "Guardian"
-            $ parent_pronoun_subject = "they"
-            $ parent_pronoun_object = "them"
-            $ parent_pronoun_possessive = "their"
-    
-    ## Generate referral code
-    $ persistent.referral_code = generate_referral_code(persistent.player_email)
-    
-    centered "Your account is ready, [persistent.player_name]."
-    pause 1.0
-    centered "Your referral code is: [persistent.referral_code]"
-    pause 1.0
-    centered "Share it with friends to unlock chapters!"
-    pause 2.0
-    
-    return
+            $ persistent.parent_name = "Guardian"
+            $ persistent.parent_pronoun_subject = "they"
+            $ persistent.parent_pronoun_object = "them"
+            $ persistent.parent_pronoun_possessive = "their"
 
-label narrator_setup:
-    
-    scene black
-    
-    centered "This game features optional narration."
-    pause 1.0
-    
-    menu:
-        "Would you like it enabled?"
-        
-        "Yes - Male narrator (London accent)":
-            $ persistent.narrator_enabled = True
-            $ persistent.narrator_voice = "male"
-        
-        "Yes - Female narrator (California accent)":
-            $ persistent.narrator_enabled = True
-            $ persistent.narrator_voice = "female"
-        
-        "No narration (text only)":
-            $ persistent.narrator_enabled = False
-    
-    return
+    $ persistent.player_name = setup_name
+    $ parent_name = persistent.parent_name
+    $ parent_pronoun_subject = persistent.parent_pronoun_subject
+    $ parent_pronoun_object = persistent.parent_pronoun_object
+    $ parent_pronoun_possessive = persistent.parent_pronoun_possessive
+    $ renpy.save_persistent()
 
-label check_chapter_unlock:
-    
-    python:
-        from datetime import date, datetime as dt
-        today = date.today()
-        days_diff = 0
-        
-        if persistent.last_played_date:
-            last_date = dt.strptime(persistent.last_played_date, "%Y-%m-%d").date()
-            days_diff = (today - last_date).days
-            
-            if days_diff == 1:
-                ## Played yesterday - continue streak
-                persistent.play_streak += 1
-                renpy.show_screen("streak_notification", days=persistent.play_streak)
-                renpy.pause(3.5)
-                renpy.hide_screen("streak_notification")
-            elif days_diff > 1:
-                ## Broke streak
-                persistent.play_streak = 1
-        else:
-            ## First time playing
-            persistent.play_streak = 1
-        
-        ## Update last played date
-        persistent.last_played_date = today.strftime("%Y-%m-%d")
-        
-        ## Unlock next chapter if it's a new day
-        if persistent.chapters_unlocked < current_chapter and not persistent.paid_unlock:
-            if days_diff >= 1:
-                persistent.chapters_unlocked = current_chapter
-    
-    ## Check if current chapter is locked
-    if current_chapter > persistent.chapters_unlocked and not persistent.paid_unlock:
-        call screen chapter_locked
-        
-        if _return == "pay":
-            ## TODO: Integrate Pesapal payment
-            "Redirecting to payment..."
-            ## After successful payment:
-            ## $ persistent.paid_unlock = True
-            ## $ persistent.chapters_unlocked = 7  # Unlock all
-        
-        elif _return == "wait":
-            centered "Come back tomorrow to continue your journey."
-            $ MainMenu(confirm=False)()
-    
     return
 
 ## ==========================================
@@ -184,74 +98,31 @@ label act1_opening:
     $ current_act = 1
     
     scene bg room_night
-    play music "audio/music/ambient_city.mp3" fadein 2.0
+    play music "audio/music/ambient_city.wav" fadein 2.0
     
     show screen game_hud
     
-    if persistent.narrator_enabled:
-        pass
-        # voice "audio/narration/[persistent.narrator_voice]/act1_scene01.mp3"
-    
-    "It's 11:47 PM."
-    "Your room is dimly lit by the glow of your laptop screen."
-    "You've been working on the same project for hours, but your mind keeps drifting."
-    
-    pause 1.0
-    
-    "Your phone vibrates."
-    play sound "audio/sfx/phone_buzz.mp3"
-    pause 0.5
-    
-    show screen notification_popup("Parent", "We need to talk.")
-    pause 2.5
-    hide screen notification_popup
-    
-    "You glance at it. A message from [parent_name]."
-    
-    pause 1.0
-    
-    "Before you can react, it buzzes again."
-    play sound "audio/sfx/phone_buzz.mp3"
-    pause 0.5
-    
-    show screen notification_popup("Casey", "I heard something...")
-    pause 2.5
-    hide screen notification_popup
-    
-    "Casey. Your stomach tightens."
-    
-    pause 1.0
-    
-    "Then a third buzz."
-    play sound "audio/sfx/phone_buzz.mp3"
-    pause 0.5
-    
-    show screen notification_popup("Unknown", "I know what you did.")
-    pause 2.5
-    hide screen notification_popup
-    
-    "Unknown number."
-    
-    pause 1.5
-    
-    "Three messages. Three different people."
-    "All within two minutes."
-    
-    pause 1.0
+    "11:47 p.m. Your project is due at midnight. You reread the same line until your phone buzzes against the desk."
+    play sound "audio/sfx/phone_buzz.wav"
+    "[parent_name]: We need to talk."
+    play sound "audio/sfx/phone_buzz.wav"
+    "Casey: I heard something..."
+    play sound "audio/sfx/phone_buzz.wav"
+    "Unknown number: I know what you did."
     
     menu:
         "Which message do you check first?"
         
-        "Check the message from [parent_name]":
+        "Open the text from [parent_name]":
             jump check_authority_first
         
-        "Check the message from Casey":
+        "Open Casey's text":
             jump check_casey_first
         
-        "Check the message from Unknown Number":
+        "Open the text from the unknown number":
             jump check_unknown_first
         
-        "Ignore them all and keep working":
+        "Silence the phone and finish the project":
             jump ignore_all_messages
 
 ## CHOICE BRANCH 1A: Check Authority First
@@ -263,7 +134,7 @@ label check_authority_first:
     $ choices_made.append("Checked parent message first")
     
     scene bg phone_screen
-    play sound "audio/sfx/phone_unlock.mp3"
+    play sound "audio/sfx/phone_unlock.wav"
     
     pause 0.5
     
@@ -285,9 +156,7 @@ label check_authority_first:
     "That tone. Never good."
     
     $ insights_unlocked.append("Authority figures make you anxious")
-    show screen insight_popup("Authority figures make you anxious")
-    pause
-    hide screen insight_popup
+    call screen insight_popup("Authority figures make you anxious")
     
     scene bg room_night
     
@@ -305,7 +174,7 @@ label check_casey_first:
     $ choices_made.append("Checked Casey message first")
     
     scene bg phone_screen
-    play sound "audio/sfx/phone_unlock.mp3"
+    play sound "audio/sfx/phone_unlock.wav"
     
     pause 0.5
     
@@ -331,9 +200,7 @@ label check_casey_first:
     "Who told [casey_pronoun_object]?"
     
     $ insights_unlocked.append("Casey knows something")
-    show screen insight_popup("Casey knows something")
-    pause
-    hide screen insight_popup
+    call screen insight_popup("Casey knows something")
     
     scene bg room_night
     
@@ -351,8 +218,8 @@ label check_unknown_first:
     $ choices_made.append("Checked unknown message first")
     
     scene bg phone_screen
-    play sound "audio/sfx/phone_unlock.mp3"
-    play music "audio/music/tension_rising.mp3" fadein 1.0
+    play sound "audio/sfx/phone_unlock.wav"
+    play music "audio/music/tension_rising.wav" fadein 1.0
     
     pause 0.5
     
@@ -383,13 +250,11 @@ label check_unknown_first:
     "How did they find out?"
     
     $ insights_unlocked.append("You're hiding something")
-    show screen insight_popup("You're hiding something")
-    pause
-    hide screen insight_popup
+    call screen insight_popup("You're hiding something")
     
     scene bg room_night
     stop music fadeout 2.0
-    play music "audio/music/ambient_city.mp3" fadein 2.0
+    play music "audio/music/ambient_city.wav" fadein 2.0
     
     "You set the phone down."
     "Your chest feels tight."
@@ -420,15 +285,13 @@ label ignore_all_messages:
     "This deadline can't."
     
     $ insights_unlocked.append("You prioritize work over people")
-    show screen insight_popup("You prioritize work over people")
-    pause
-    hide screen insight_popup
+    call screen insight_popup("You prioritize work over people")
     
-    play sound "audio/sfx/phone_buzz.mp3"
+    play sound "audio/sfx/phone_buzz.wav"
     pause 0.3
-    play sound "audio/sfx/phone_buzz.mp3"
+    play sound "audio/sfx/phone_buzz.wav"
     pause 0.3
-    play sound "audio/sfx/phone_buzz.mp3"
+    play sound "audio/sfx/phone_buzz.wav"
     
     "Your phone keeps buzzing."
     "But you don't look."
@@ -487,7 +350,7 @@ label post_first_message_check:
 label act1_morning_confrontation:
     
     scene bg kitchen_morning
-    play music "audio/music/ambient_city.mp3" fadein 2.0
+    play music "audio/music/ambient_city.wav" fadein 2.0
     
     if persistent.narrator_enabled:
         pass
@@ -624,9 +487,7 @@ label confrontation_deny:
     parent "And they have proof."
     
     $ insights_unlocked.append("Lying to authority makes things worse")
-    show screen insight_popup("Lying to authority makes things worse")
-    pause
-    hide screen insight_popup
+    call screen insight_popup("Lying to authority makes things worse")
     
     jump confrontation_aftermath
 
@@ -697,9 +558,7 @@ label early_truth_reveal:
     player "Against a professor."
     
     $ insights_unlocked.append("Academic corruption is involved")
-    show screen insight_popup("Academic corruption is involved")
-    pause
-    hide screen insight_popup
+    call screen insight_popup("Academic corruption is involved")
     
     jump confrontation_aftermath
 
@@ -737,7 +596,7 @@ label confrontation_aftermath:
     pause 1.0
     
     "Your phone buzzes."
-    play sound "audio/sfx/phone_buzz.mp3"
+    play sound "audio/sfx/phone_buzz.wav"
     
     "Another message."
     
@@ -750,7 +609,7 @@ label confrontation_aftermath:
 label act1_cliffhanger:
     
     scene bg room_night
-    play music "audio/music/tension_rising.mp3" fadein 2.0
+    play music "audio/music/tension_rising.wav" fadein 2.0
     
     "Back in your room, you finally check your phone."
     
@@ -805,7 +664,7 @@ label act1_cliffhanger:
     scene black
     
     ## Distorted audio effect (if you add audio later)
-    play sound "audio/sfx/chair_scrape.mp3"
+    play sound "audio/sfx/chair_scrape.wav"
     
     "..."
     
@@ -828,7 +687,7 @@ label act1_cliffhanger:
     pause 1.5
     
     ## Phone rings
-    play sound "audio/sfx/phone_buzz.mp3"
+    play sound "audio/sfx/phone_buzz.wav"
     
     "Your phone rings."
     
@@ -859,26 +718,27 @@ label end_of_chapter_1:
     
     centered "{size=48}CHAPTER 1 COMPLETE{/size}"
     pause 1.5
-    centered "Your choices have been recorded."
-    
-    pause 2.0
-    
+    centered "Your choices have been recorded. The story continues now."
+    pause 1.5
+
+    $ current_chapter = 2
+    $ renpy.save("act1_checkpoint")
+
     menu:
         "What would you like to do?"
-        
+
+        "Continue to Chapter 2":
+            jump act2_opening
+
         "View Records":
             show screen records_sidebar
             "Press ESC when done viewing."
             pause
             hide screen records_sidebar
             jump end_of_chapter_1
-        
+
         "Save & Exit":
-            $ renpy.save("chapter_1_complete")
             $ MainMenu()()
-        
-        "Continue to Chapter 2 (Coming Soon)":
-            jump season2_teaser
 
 ## Season 2 Teaser (Post-credits)
 label season2_teaser:
@@ -892,7 +752,7 @@ label season2_teaser:
     pause 2.0
     
     scene bg unknown_location
-    play music "audio/music/tension_rising.mp3"
+    play music "audio/music/tension_rising.wav"
     
     "???" "You thought it was over?"
     
@@ -907,25 +767,18 @@ label season2_teaser:
     
     centered "{size=48}PARALLEL WORLDS{/size}"
     pause 1.0
-    centered "{size=32}CHAPTER 2{/size}"
+    centered "{size=32}SEASON 2{/size}"
     pause 1.0
     centered "COMING SOON"
     
     pause 2.0
     
-    menu:
-        "Want to be notified when Chapter 2 launches?"
-        
-        "Yes - Send me updates":
-            $ persistent.wants_season2_emails = True
-            centered "We'll email you at [persistent.player_email] when Chapter 2 is ready."
-            pause 2.0
-        
-        "No thanks":
-            pass
-    
     $ persistent.seen_teaser = True
-    
+    $ renpy.save_persistent()
+
+    centered "Season 1 is complete. Your save remains on this device."
+    pause 2.0
+
     $ MainMenu()()
     
     return

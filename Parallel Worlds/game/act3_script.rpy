@@ -18,7 +18,7 @@ label act3_opening:
     pause 2.0
 
     scene bg campus_day
-    play music "audio/music/ambient_city.mp3" fadein 2.0
+    play music "audio/music/ambient_city.wav" fadein 2.0
 
     show screen game_hud
 
@@ -36,7 +36,7 @@ label act3_opening:
 
     "And then your student email pings."
 
-    play sound "audio/sfx/phone_buzz.mp3"
+    play sound "audio/sfx/phone_buzz.wav"
     pause 0.5
 
     show screen notification_popup("Dean's Office", "Requested attendance: Friday 10 AM")
@@ -61,8 +61,8 @@ label act3_opening:
 label act3_scene_morgan_meetup:
 
     scene bg cafe
-    play music "audio/music/ambient_city.mp3"
-    play sound "audio/sfx/cafe_ambience.mp3"
+    play music "audio/music/ambient_city.wav"
+    play sound "audio/sfx/cafe_ambience.wav"
 
     if persistent.narrator_enabled:
         pass
@@ -187,9 +187,7 @@ label morgan_reveals_evidence:
     "Something shifts in your chest."
 
     $ insights_unlocked.append("Morgan was trying to protect themselves, not just cause harm")
-    show screen insight_popup("Morgan was trying to protect themselves, not just cause harm")
-    pause
-    hide screen insight_popup
+    call screen insight_popup("Morgan was trying to protect themselves, not just cause harm")
 
     player "You were scared."
 
@@ -306,7 +304,7 @@ label act3_scene_jordan_side:
     "Jordan texts you that evening."
 
     scene bg phone_screen
-    play sound "audio/sfx/phone_unlock.mp3"
+    play sound "audio/sfx/phone_unlock.wav"
 
     nvl clear
     "JORDAN" "{size=14}7:41 PM{/size}"
@@ -379,7 +377,7 @@ label jordan_meet_yes:
     $ jordan_relationship += 15
 
     scene bg rooftop_night
-    play music "audio/music/ambient_city.mp3" fadein 2.0
+    play music "audio/music/ambient_city.wav" fadein 2.0
 
     show jordan serious at center
 
@@ -503,7 +501,7 @@ label jordan_scene_end:
 
     hide jordan with dissolve
     stop music fadeout 2.0
-    play music "audio/music/ambient_city.mp3" fadein 2.0
+    play music "audio/music/ambient_city.wav" fadein 2.0
 
     pause 1.0
 
@@ -517,7 +515,7 @@ label jordan_scene_end:
 label act3_scene_casey_support:
 
     scene bg room_night
-    play music "audio/music/ambient_city.mp3"
+    play music "audio/music/ambient_city.wav"
 
     if persistent.narrator_enabled:
         pass
@@ -530,7 +528,7 @@ label act3_scene_casey_support:
 
     pause 1.0
 
-    play sound "audio/sfx/phone_buzz.mp3"
+    play sound "audio/sfx/phone_buzz.wav"
 
     show screen notification_popup("Casey", "still up?")
     pause 1.5
@@ -634,7 +632,7 @@ label casey_support_yes:
 label act3_major_choice_approach:
 
     scene bg rooftop_night
-    play music "audio/music/ambient_city.mp3" fadein 2.0
+    play music "audio/music/ambient_city.wav" fadein 2.0
 
     if persistent.narrator_enabled:
         pass
@@ -773,7 +771,7 @@ label act3_major_choice:
     $ remember("act1_major_choice", "dean_office")
 
     scene bg dean_office
-    play music "audio/music/tension_rising.mp3" fadein 2.0
+    play music "audio/music/tension_rising.wav" fadein 2.0
 
     if persistent.narrator_enabled:
         pass
@@ -840,7 +838,7 @@ label major_choice_A_testify:
     $ remember("act2_betrayal", "chose_truth")
     $ choices_made.append("Testified fully at dean's hearing")
 
-    play music "audio/music/ambient_city.mp3" fadein 1.0
+    play music "audio/music/ambient_city.wav" fadein 1.0
 
     "You take a breath."
     "And you start talking."
@@ -880,9 +878,7 @@ label major_choice_A_testify:
     "That's it."
 
     $ insights_unlocked.append("Telling the truth out loud is different from knowing it privately")
-    show screen insight_popup("Telling the truth out loud is different from knowing it privately")
-    pause
-    hide screen insight_popup
+    call screen insight_popup("Telling the truth out loud is different from knowing it privately")
 
     stop music fadeout 2.0
     jump act3_aftermath_shared
@@ -956,9 +952,7 @@ label major_choice_B_silent:
     $ jordan_relationship -= 20
 
     $ insights_unlocked.append("Some silences cost other people more than yourself")
-    show screen insight_popup("Some silences cost other people more than yourself")
-    pause
-    hide screen insight_popup
+    call screen insight_popup("Some silences cost other people more than yourself")
 
     jump act3_aftermath_shared
 
@@ -1011,9 +1005,7 @@ label major_choice_C_deal:
     $ truth += 10
 
     $ insights_unlocked.append("Pragmatism and morality don't always cancel each other out")
-    show screen insight_popup("Pragmatism and morality don't always cancel each other out")
-    pause
-    hide screen insight_popup
+    call screen insight_popup("Pragmatism and morality don't always cancel each other out")
 
     jump act3_aftermath_shared
 
@@ -1040,7 +1032,7 @@ label major_choice_D_morgan_gambit:
     "The investigator looks at the clock. Then nods."
 
     scene bg campus_day
-    play music "audio/music/ambient_city.mp3" fadein 1.0
+    play music "audio/music/ambient_city.wav" fadein 1.0
 
     show morgan nervous at center
 
@@ -1093,9 +1085,7 @@ label morgan_gambit_success:
     "Together."
 
     $ insights_unlocked.append("Sometimes the right move is helping someone else do the right thing")
-    show screen insight_popup("Sometimes the right move is helping someone else do the right thing")
-    pause
-    hide screen insight_popup
+    call screen insight_popup("Sometimes the right move is helping someone else do the right thing")
 
     jump act3_aftermath_shared
 
@@ -1135,7 +1125,7 @@ label morgan_gambit_fail:
 label act3_aftermath_shared:
 
     scene bg campus_day
-    play music "audio/music/ambient_city.mp3" fadein 2.0
+    play music "audio/music/ambient_city.wav" fadein 2.0
 
     if persistent.narrator_enabled:
         pass
@@ -1151,11 +1141,11 @@ label act3_aftermath_shared:
 
     "Your phone starts filling up."
 
-    play sound "audio/sfx/phone_buzz.mp3"
+    play sound "audio/sfx/phone_buzz.wav"
     pause 0.3
-    play sound "audio/sfx/phone_buzz.mp3"
+    play sound "audio/sfx/phone_buzz.wav"
     pause 0.3
-    play sound "audio/sfx/phone_buzz.mp3"
+    play sound "audio/sfx/phone_buzz.wav"
 
     "Word travels fast."
 

@@ -18,7 +18,7 @@ label act2_opening:
     pause 2.0
 
     scene bg campus_day
-    play music "audio/music/ambient_city.mp3" fadein 2.0
+    play music "audio/music/ambient_city.wav" fadein 2.0
 
     show screen game_hud
 
@@ -49,7 +49,7 @@ label act2_opening:
 label act2_scene_campus_walk:
 
     scene bg campus_day
-    play music "audio/music/ambient_city.mp3"
+    play music "audio/music/ambient_city.wav"
 
     if persistent.narrator_enabled:
         pass
@@ -120,9 +120,7 @@ label act2_approach_jordan:
     "You realize Jordan knows more than [jordan_pronoun_subject] is saying."
 
     $ insights_unlocked.append("Jordan is involved in whatever happened")
-    show screen insight_popup("Jordan is involved in whatever happened")
-    pause
-    hide screen insight_popup
+    call screen insight_popup("Jordan is involved in whatever happened")
 
     jump act2_jordan_campus_end
 
@@ -167,8 +165,8 @@ label act2_jordan_campus_end:
 label act2_scene_casey_confrontation:
 
     scene bg cafe
-    play music "audio/music/ambient_city.mp3"
-    play sound "audio/sfx/cafe_ambience.mp3"
+    play music "audio/music/ambient_city.wav"
+    play sound "audio/sfx/cafe_ambience.wav"
 
     if persistent.narrator_enabled:
         pass
@@ -185,7 +183,7 @@ label act2_scene_casey_confrontation:
 
     show casey neutral at right
 
-    play sound "audio/sfx/chair_scrape.mp3"
+    play sound "audio/sfx/chair_scrape.wav"
 
     casey "I've been texting you."
 
@@ -319,9 +317,7 @@ label casey_conf_admit:
     casey "Then I'm staying close."
 
     $ insights_unlocked.append("Casey would rather know hard truths than comfortable lies")
-    show screen insight_popup("Casey would rather know hard truths than comfortable lies")
-    pause
-    hide screen insight_popup
+    call screen insight_popup("Casey would rather know hard truths than comfortable lies")
 
     jump casey_conf_end
 
@@ -407,16 +403,16 @@ label act2_scene_morgan_text:
 
 # voice "audio/narration/[persistent.narrator_voice]/act2_morgan.mp3"
 
-    play sound "audio/sfx/phone_buzz.mp3"
+    play sound "audio/sfx/phone_buzz.wav"
     pause 0.3
-    play sound "audio/sfx/phone_buzz.mp3"
+    play sound "audio/sfx/phone_buzz.wav"
 
     show screen notification_popup("Morgan", "We need to talk. But not here.")
     pause 2.0
     hide screen notification_popup
 
     scene bg phone_screen
-    play sound "audio/sfx/phone_unlock.mp3"
+    play sound "audio/sfx/phone_unlock.wav"
     pause 0.3
 
     nvl clear
@@ -525,7 +521,7 @@ label morgan_text_end:
 label act2_scene_riley_reveal:
 
     scene bg library_steps_evening
-    play music "audio/music/tension_rising.mp3" fadein 2.0
+    play music "audio/music/tension_rising.wav" fadein 2.0
 
     if persistent.narrator_enabled:
         pass
@@ -670,9 +666,7 @@ label riley_reveal_full:
     "The silence after that sentence is very loud."
 
     $ insights_unlocked.append("The corruption is worse than you assumed")
-    show screen insight_popup("The corruption is worse than you assumed")
-    pause
-    hide screen insight_popup
+    call screen insight_popup("The corruption is worse than you assumed")
 
     riley "Jordan showed Morgan the evidence."
     pause 0.5
@@ -768,9 +762,7 @@ label riley_response_no:
     "That hits."
 
     $ insights_unlocked.append("Silence is its own kind of choice")
-    show screen insight_popup("Silence is its own kind of choice")
-    pause
-    hide screen insight_popup
+    call screen insight_popup("Silence is its own kind of choice")
 
     jump riley_scene_end
 
@@ -780,7 +772,7 @@ label riley_scene_end:
     hide riley with dissolve
 
     stop music fadeout 2.0
-    play music "audio/music/ambient_city.mp3" fadein 2.0
+    play music "audio/music/ambient_city.wav" fadein 2.0
 
     pause 1.0
 
@@ -808,7 +800,7 @@ label act2_scene_anchor:
     $ anchor_relationship = 30
 
     scene bg rooftop_night
-    play music "audio/music/ambient_city.mp3"
+    play music "audio/music/ambient_city.wav"
 
     if persistent.narrator_enabled:
         pass

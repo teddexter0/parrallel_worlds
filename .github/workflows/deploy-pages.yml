@@ -28,10 +28,35 @@ jobs:
       - name: Configure Pages
         uses: actions/configure-pages@v5
 
+      - name: Install Ren'Py and prepare assets
+        shell: bash
+        run: |
+          set -euo pipefail
+          sdk="$RUNNER_TEMP/renpy"
+          mkdir -p "$sdk"
+          curl --fail --silent --show-error --location --retry 3 https://www.renpy.org/dl/8.5.2/renpy-8.5.2-sdk.tar.bz2 | tar -xj -C "$sdk" --strip-components=1
+          curl --fail --silent --show-error --location --retry 3 https://www.renpy.org/dl/8.5.2/renpy-8.5.2-web.zip --output "$RUNNER_TEMP/renpy-web.zip"
+          unzip -oq "$RUNNER_TEMP/renpy-web.zip" -d "$sdk"
+          python -m pip install Pillow==11.3.0
+          python tools/prepare_web_assets.py
+
+      - name: Lint and build
+        shell: bash
+        env:
+          SDL_AUDIODRIVER: dummy
+        run: |
+          set -euo pipefail
+          sdk="$RUNNER_TEMP/renpy"
+          project="$GITHUB_WORKSPACE/Parallel Worlds"
+          site="$RUNNER_TEMP/parallel-worlds"
+          xvfb-run -a "$sdk/renpy.sh" "$project" lint
+          xvfb-run -a "$sdk/renpy.sh" launcher web_build "$project" --destination "$site"
+          cp ParallelWorlds-1.0.0-dists/ParallelWorlds-1.0.0-web/index.html "$site/index.html"
+
       - name: Upload Pages artifact
         uses: actions/upload-pages-artifact@v3
         with:
-          path: ParallelWorlds-1.0.0-dists/ParallelWorlds-1.0.0-web
+          path: ${{ runner.temp }}/parallel-worlds
 
       - name: Deploy to GitHub Pages
         id: deployment

@@ -1,4 +1,4 @@
-﻿################################################################################
+################################################################################
 ## Initialization
 ################################################################################
 
@@ -25,14 +25,14 @@ define config.check_conflicting_properties = True
 ## The colors of text in the interface.
 
 ## An accent color used throughout the interface to label and highlight text.
-define gui.accent_color = '#72ddf7'
+define gui.accent_color = '#e0b15f'
 
 ## The color used for a text button when it is neither selected nor hovered.
-define gui.idle_color = '#d7e6f1'
+define gui.idle_color = '#ece7dc'
 
 ## The small color is used for small text, which needs to be brighter/darker to
 ## achieve the same effect.
-define gui.idle_small_color = '#a9c3d6'
+define gui.idle_small_color = '#c7bca8'
 
 ## The color that is used for buttons and bars that are hovered.
 define gui.hover_color = '#ffffff'
@@ -46,12 +46,12 @@ define gui.insensitive_color = '#8888887f'
 
 ## Colors used for the portions of bars that are not filled in. These are not
 ## used directly, but are used when re-generating bar image files.
-define gui.muted_color = '#15354b'
-define gui.hover_muted_color = '#214e70'
+define gui.muted_color = '#393140'
+define gui.hover_muted_color = '#594852'
 
 ## The colors used for dialogue and menu choice text.
-define gui.text_color = '#f5fbff'
-define gui.interface_text_color = '#f5fbff'
+define gui.text_color = '#f7efe3'
+define gui.interface_text_color = '#f7efe3'
 
 
 ## Fonts and Font Sizes ########################################################
@@ -66,10 +66,10 @@ define gui.name_text_font = "DejaVuSans.ttf"
 define gui.interface_text_font = "DejaVuSans.ttf"
 
 ## The size of normal dialogue text.
-define gui.text_size = 33
+define gui.text_size = 35
 
 ## The size of character names.
-define gui.name_text_size = 45
+define gui.name_text_size = 42
 
 ## The size of text in the game's user interface.
 define gui.interface_text_size = 33
@@ -211,9 +211,9 @@ define gui.choice_button_borders = Borders(150, 8, 150, 8)
 define gui.choice_button_text_font = gui.text_font
 define gui.choice_button_text_size = gui.text_size
 define gui.choice_button_text_xalign = 0.5
-define gui.choice_button_text_idle_color = '#f5fbff'
+define gui.choice_button_text_idle_color = '#fff7ea'
 define gui.choice_button_text_hover_color = "#ffffff"
-define gui.choice_button_text_insensitive_color = '#8aa4b67f'
+define gui.choice_button_text_insensitive_color = '#a49a8a7f'
 
 
 ## File Slot Buttons ###########################################################

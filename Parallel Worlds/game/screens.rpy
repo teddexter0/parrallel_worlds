@@ -1,326 +1,248 @@
-## FILE: game/screens.rpy
-## UI Screens and menus
+## Shared game interface.
 
 init python:
     def ui_is_small():
-        return renpy.variant("small")
+        return renpy.variant("small") or renpy.variant("touch")
+
+
+style pw_action is button:
+    background "#243649"
+    hover_background "#39556d"
+    selected_background "#39556d"
+    insensitive_background "#182534"
+    padding (24, 15)
+    yminimum 64
+
+style pw_action_text is button_text:
+    color "#f8f4ee"
+    insensitive_color "#a8b4bf"
+    size 32
+
+style pw_primary is pw_action:
+    background "#f3c77c"
+    hover_background "#ffe0aa"
+
+style pw_primary_text is pw_action_text:
+    color "#161b24"
+    bold True
+
+style pw_action_button is pw_action
+style pw_action_button_text is pw_action_text
+style pw_primary_button is pw_primary
+style pw_primary_button_text is pw_primary_text
 
 
 screen main_menu():
-
     tag menu
 
-    add Solid("#07141f")
     add "gui/main_menu.png"
-    add Solid("#07141fcc")
+    add Solid("#07142336")
 
-    if ui_is_small():
-        frame:
-            xalign 0.5
-            yalign 0.5
-            xsize 1740
-            ymaximum 1010
-            background "#08131df2"
-            padding (54, 42)
+    frame:
+        xalign (0.07 if ui_is_small() else 0.09)
+        yalign 0.52
+        xsize (880 if ui_is_small() else 730)
+        background "#0b1423e8"
+        padding (50, 48)
+
+        vbox:
+            spacing 22
+
+            text "Parallel Worlds" size (86 if ui_is_small() else 75) color "#fff8ea" bold True
+            text "Three texts arrive just before midnight. One comes from a number you don't know." size (41 if ui_is_small() else 35) color "#e5e8ec" line_spacing 5
+
+            null height 10
+
+            if renpy.list_saved_games():
+                textbutton "Continue" style_prefix "pw_primary" action Continue() xfill True
+                textbutton "New game" style_prefix "pw_action" action Start() xfill True
+            else:
+                textbutton "Start story" style_prefix "pw_primary" action Start() xfill True
 
             hbox:
-                spacing 44
+                spacing 14
+                textbutton "Load" style_prefix "pw_action" action ShowMenu("load")
+                textbutton "Settings" style_prefix "pw_action" action ShowMenu("preferences")
+                textbutton "How to play" style_prefix "pw_action" action Show("web_howto_popup")
 
-                vbox:
-                    spacing 20
-                    xsize 720
-
-                    text "Parallel Worlds" size 56 color "#f5fbff" bold True
-                    text "A choice-driven text RPG about pressure, secrets, and who you become." size 31 color "#b8e8f7" xmaximum 690
-
-                    null height 4
-
-                    textbutton "New Game":
-                        action Start()
-                        xsize 520
-                        background "#2ec4b6"
-                        padding (32, 20)
-                        hover_background "#43dbc7"
-                        text_color "#04111a"
-                        text_size 32
-                        text_xalign 0.5
-
-                    textbutton "Continue":
-                        action ShowMenu("load")
-                        xsize 520
-                        background "#ff9f1c"
-                        padding (32, 20)
-                        hover_background "#ffb347"
-                        text_color "#1d1200"
-                        text_size 32
-                        text_xalign 0.5
-
-                    hbox:
-                        spacing 16
-
-                        textbutton "Settings":
-                            action ShowMenu("preferences")
-                            xsize 252
-                            background "#26384a"
-                            padding (24, 16)
-                            hover_background "#31495d"
-                            text_color "#f8f9ff"
-                            text_size 25
-                            text_xalign 0.5
-
-                        textbutton "Quit":
-                            action Quit(confirm=True)
-                            xsize 252
-                            background "#26384a"
-                            padding (24, 16)
-                            hover_background "#31495d"
-                            text_color "#f5fbff"
-                            text_size 25
-                            text_xalign 0.5
-
-                frame:
-                    xsize 840
-                    background "#0e1d2be8"
-                    padding (36, 32)
-
-                    vbox:
-                        spacing 20
-
-                        text "How to play" size 40 color "#f5fbff" bold True
-                        text "Read the scene, tap anywhere to move forward, then choose a response when the choice cards appear." size 29 color "#d9f2ff" xmaximum 760
-                        text "Choices affect relationships, unlocked clues, and how later scenes read you." size 27 color "#b8e8f7" xmaximum 760
-                        text "Use Records during play to review people, clues, and emotional stats." size 27 color "#b8e8f7" xmaximum 760
-
-                        textbutton "Open quick guide":
-                            action Show("web_howto_popup")
-                            background "#f5fbff"
-                            padding (28, 15)
-                            hover_background "#d6f3ff"
-                            text_color "#07141f"
-                            text_size 25
-                            text_xalign 0.5
-                            xalign 0.0
-
-    else:
-        frame:
-            xalign 0.07
-            yalign 0.52
-            xsize 690
-            ysize 760
-            background "#08131dee"
-            padding (48, 42)
-
-            vbox:
-                spacing 20
-
-                text "Parallel Worlds" size 58 color "#f5fbff" bold True
-                text "A choice-driven text RPG about pressure, secrets, and who you become." size 24 color "#b8e8f7" xmaximum 580
-
-                null height 4
-
-                textbutton "New Game":
-                    action Start()
-                    xsize 410
-                    background "#2ec4b6"
-                    padding (26, 17)
-                    hover_background "#43dbc7"
-                    text_color "#04111a"
-                    text_size 28
-                    text_xalign 0.5
-
-                textbutton "Continue":
-                    action ShowMenu("load")
-                    xsize 410
-                    background "#ff9f1c"
-                    padding (26, 17)
-                    hover_background "#ffb347"
-                    text_color "#1d1200"
-                    text_size 28
-                    text_xalign 0.5
-
-                textbutton "Settings":
-                    action ShowMenu("preferences")
-                    xsize 410
-                    background "#26384a"
-                    padding (24, 15)
-                    hover_background "#31495d"
-                    text_color "#f8f9ff"
-                    text_size 23
-                    text_xalign 0.5
-
-                textbutton "Refer Friends":
-                    action Show("referral_screen")
-                    xsize 410
-                    background "#7c3058"
-                    padding (24, 15)
-                    hover_background "#91406a"
-                    text_color "#fff8fb"
-                    text_size 23
-                    text_xalign 0.5
-
-                textbutton "Quit":
-                    action Quit(confirm=True)
-                    xsize 410
-                    background "#1f2a35"
-                    padding (22, 14)
-                    hover_background "#334556"
-                    text_color "#f5fbff"
-                    text_size 21
-                    text_xalign 0.5
-
-        frame:
-            xalign 0.78
-            yalign 0.46
-            xsize 690
-            background "#0e1d2bdd"
-            padding (36, 32)
-
-            vbox:
-                spacing 18
-
-                text "How to play" size 36 color "#f5fbff" bold True
-                text "Read the scene, click or tap to continue, then choose your response when the cards appear." size 23 color "#d9f2ff" xmaximum 600
-                text "Choices affect relationships, unlocked clues, and how later scenes respond to you." size 22 color "#b8e8f7" xmaximum 600
-                text "Use Records during play to review people, clues, and emotional stats." size 22 color "#b8e8f7" xmaximum 600
-
-                textbutton "Quick guide":
-                    action Show("web_howto_popup")
-                    background "#f5fbff"
-                    padding (22, 14)
-                    hover_background "#d6f3ff"
-                    text_color "#07141f"
-                    text_size 20
-                    text_xalign 0.5
-                    xalign 0.0
-
-    if not persistent.seen_web_howto:
-        use web_howto_popup(first_time=True)
+            text "Your profile and saves stay on this device." size (30 if ui_is_small() else 25) color "#cbd6df"
 
 
 screen web_howto_popup(first_time=False):
-
     modal True
     zorder 200
-
-    add Solid("#02070cb8")
+    key "game_menu" action Hide("web_howto_popup")
+    add Solid("#070f1bda")
 
     frame:
         xalign 0.5
-        yalign 0.52
-        xsize (1720 if ui_is_small() else 980)
-        background "#0b1621f6"
-        padding (48 if ui_is_small() else 42, 36 if ui_is_small() else 34)
+        yalign 0.5
+        xsize (1500 if ui_is_small() else 1050)
+        background "#142235"
+        padding (46, 38)
 
         vbox:
-            spacing (22 if ui_is_small() else 18)
-
-            text "How to play" size (50 if ui_is_small() else 42) xalign 0.5 color "#f5fbff" bold True
-            text "Read the scene, move forward, then pick your response when choice cards appear." size (31 if ui_is_small() else 23) xalign 0.5 color "#8ecae6" text_align 0.5
-
-            frame:
-                background "#122638"
-                padding (28, 24)
-
-                vbox:
-                    spacing (16 if ui_is_small() else 12)
-                    text "1. Start with New Game. Continue only works after you save." size (29 if ui_is_small() else 21) color "#f5fbff"
-                    text "2. Advance with tap, click, Space, or Enter." size (29 if ui_is_small() else 21) color "#f5fbff"
-                    text "3. When choices appear, pick the response you want to live with." size (29 if ui_is_small() else 21) color "#f5fbff"
-                    text "4. Records keeps track of clues, people, and emotional stats." size (29 if ui_is_small() else 21) color "#f5fbff"
-
+            spacing 24
+            text "How to play" size 52 color "#fff8ea" bold True
+            text "Tap, click, or press Space to advance. When a decision appears, select the response you want to take." size 35 color "#e5e8ec" line_spacing 5
+            text "Open Pause to save, load, or change audio and text speed. Records tracks clues and relationships." size 35 color "#e5e8ec" line_spacing 5
             hbox:
-                spacing 20
-                xalign 0.5
+                spacing 14
+                textbutton "Back" style_prefix "pw_primary" action Hide("web_howto_popup")
+                textbutton "Asset credits" style_prefix "pw_action" action [Hide("web_howto_popup"), Show("asset_credits")]
 
-                textbutton "START PLAYING":
-                    action [SetField(persistent, "seen_web_howto", True), Hide("web_howto_popup")]
-                    background "#2ec4b6"
-                    padding (30, 14)
-                    hover_background "#43dbc7"
-                    text_color "#04111a"
-                    text_size 20
 
-                if not first_time:
-                    textbutton "CLOSE":
-                        action Hide("web_howto_popup")
-                        background "#233241"
-                        padding (30, 14)
-                        hover_background "#31495d"
-                        text_color "#f5fbff"
-                        text_size 20
+screen asset_credits():
+    modal True
+    zorder 200
+    key "game_menu" action Hide("asset_credits")
+
+    use pw_game_menu("Asset credits"):
+        text "Cover and opening room: AI-generated artwork made for this game." size 34 color "#fff8ea"
+        text "Other backgrounds and character portraits: generated placeholder illustrations from this project's asset script." size 34 color "#fff8ea"
+        text "City, café and suspense audio: synthesized for this game." size 34 color "#fff8ea"
+        textbutton "Back" style_prefix "pw_primary" action [Hide("asset_credits"), Show("web_howto_popup")]
 
 
 screen say(who, what):
-
     style_prefix "say"
 
     window:
         id "window"
-        background "#07131ee8"
+        background "#0c1523f4"
         xalign 0.5
-        yalign 1.0
-        xfill True
-        ysize (360 if ui_is_small() else 300)
-        left_padding (72 if ui_is_small() else 90)
-        right_padding (72 if ui_is_small() else 90)
-        top_padding (30 if ui_is_small() else 32)
-        bottom_padding (38 if ui_is_small() else 38)
+        yalign 0.98
+        xsize (1820 if ui_is_small() else 1600)
+        yminimum (250 if ui_is_small() else 220)
+        padding (50, 30)
 
-        if who is not None:
-            text who id "who" color "#72ddf7" size (40 if ui_is_small() else 30) bold True xpos 0 ypos 0
-
-        text what id "what" color "#f5fbff" size (42 if ui_is_small() else 32) xpos 0 ypos (70 if ui_is_small() else 58) xmaximum (1700 if ui_is_small() else 1500)
+        vbox:
+            spacing 12
+            if who is not None:
+                text who id "who" color "#f3c77c" size (42 if ui_is_small() else 35) bold True
+            text what id "what" color "#fff8ea" size (50 if ui_is_small() else 43) line_spacing 5
 
 
 screen choice(items):
-
     modal True
     zorder 60
 
     frame:
-        if ui_is_small():
-            xalign 0.5
-            xsize 1720
-            yalign 0.46
-        else:
-            xalign 0.08
-            xsize 780
-            yalign 0.44
-        background "#091723ed"
-        padding (34 if ui_is_small() else 28, 30 if ui_is_small() else 28)
+        xalign 0.5
+        yalign 0.53
+        xsize (1610 if ui_is_small() else 1150)
+        background "#0c1523fa"
+        padding (36, 30)
 
-        vbox:
-            spacing (22 if ui_is_small() else 18)
+        viewport:
+            ymaximum 680
+            draggable True
+            mousewheel True
+            scrollbars ("vertical" if len(items) > 5 else None)
 
-            text "Choose your move" size (30 if ui_is_small() else 23) color "#8ecae6" bold True
+            vbox:
+                spacing 16
 
-            for i in items:
-                button:
-                    action i.action
-                    xfill True
-                    background "#14324a"
-                    hover_background "#214e70"
-                    padding (30 if ui_is_small() else 24, 22 if ui_is_small() else 20)
-
-                    text i.caption:
-                        color "#f5fbff"
-                        hover_color "#ffffff"
-                        size (34 if ui_is_small() else 24)
-                        xalign 0.0
+                for item in items:
+                    if item.action is None and not item.kwargs.get("disabled", False):
+                        text item.caption size (47 if ui_is_small() else 39) color "#f3c77c" bold True
+                    else:
+                        textbutton item.caption:
+                            style_prefix "pw_action"
+                            action item.action
+                            xfill True
+                            yminimum (112 if ui_is_small() else 76)
+                            text_size (42 if ui_is_small() else 35)
 
 
-## In-game HUD
 screen game_hud():
+    zorder 70
 
-    use records_button
+    hbox:
+        xalign 0.975
+        yalign 0.032
+        spacing 15
+
+        text "Chapter [current_chapter]" yalign 0.5 size (37 if ui_is_small() else 27) color "#fff8ea" outlines [(3, "#0b1423")]
+        textbutton "Records" style_prefix "pw_action" action Show("records_sidebar") yminimum (102 if ui_is_small() else 64)
+        textbutton "Pause" style_prefix "pw_action" action ShowMenu("pause_menu") yminimum (102 if ui_is_small() else 64)
+
+
+screen pw_game_menu(title):
+    add "gui/main_menu.png"
+    add Solid("#07111ddc")
 
     frame:
-        xalign (0.98 if ui_is_small() else 0.965)
-        yalign (0.035 if ui_is_small() else 0.05)
-        background "#0b1621dd"
-        padding (18 if ui_is_small() else 16, 10)
+        xalign 0.5
+        yalign 0.5
+        xsize (1650 if ui_is_small() else 1280)
+        ymaximum 960
+        background "#101c2bf5"
+        padding (44, 38)
 
-        text "Chapter [current_chapter] | Act [current_act]" size (22 if ui_is_small() else 16) color "#f5fbff"
+        vbox:
+            spacing 20
+            text title size (65 if ui_is_small() else 52) color "#fff8ea" bold True
+            transclude
+
+
+screen pause_menu():
+    tag menu
+    key "game_menu" action Return()
+
+    use pw_game_menu("Paused"):
+        textbutton "Resume" style_prefix "pw_primary" action Return() xfill True
+        textbutton "Save game" style_prefix "pw_action" action ShowMenu("save") xfill True
+        textbutton "Load game" style_prefix "pw_action" action ShowMenu("load") xfill True
+        textbutton "Settings" style_prefix "pw_action" action ShowMenu("preferences") xfill True
+        textbutton "Main menu" style_prefix "pw_action" action MainMenu(confirm=True) xfill True
+
+
+screen save():
+    tag menu
+    use pw_slots("Save game", FileSave)
+
+screen load():
+    tag menu
+    use pw_slots("Load game", FileLoad)
+
+screen pw_slots(title, slot_action):
+    $ back_action = Return() if main_menu else ShowMenu("pause_menu")
+    key "game_menu" action back_action
+
+    use pw_game_menu(title):
+        grid 3 2:
+            spacing 14
+
+            for slot in range(1, 7):
+                textbutton FileTime(slot, format="%d %b, %H:%M", empty="Empty slot"):
+                    style_prefix "pw_action"
+                    action slot_action(slot)
+                    xsize (500 if ui_is_small() else 388)
+                    ysize 115
+                    text_size (35 if ui_is_small() else 28)
+
+        hbox:
+            spacing 14
+            textbutton "Auto" style_prefix "pw_action" action FilePage("auto")
+            textbutton "Quick" style_prefix "pw_action" action FilePage("quick")
+            for page in range(1, 5):
+                textbutton str(page) style_prefix "pw_action" action FilePage(page)
+
+        textbutton "Back" style_prefix "pw_primary" action back_action
+
+
+screen preferences():
+    tag menu
+    $ back_action = Return() if main_menu else ShowMenu("pause_menu")
+    key "game_menu" action back_action
+
+    use pw_game_menu("Settings"):
+        for label, setting in [("Text speed", "text speed"), ("Music volume", "music volume"), ("Sound effects", "sound volume")]:
+            text label size (38 if ui_is_small() else 32) color "#fff8ea"
+            bar value Preference(setting) ysize 36
+        textbutton "Mute all" style_prefix "pw_action" action Preference("all mute", "toggle")
+        textbutton "Back" style_prefix "pw_primary" action back_action
 
 
 ## General notification system
@@ -345,7 +267,7 @@ screen show_notification(message, notification_type="neutral"):
         else:
             background "#264653"
 
-        text message size 17 color "#f5fbff"
+        text message size 17 color "#fff4df"
 
     timer 3.5 action Hide("show_notification")
 
@@ -365,99 +287,90 @@ screen insight_popup(insight_text):
     frame:
         xalign 0.5
         yalign 0.28
-        xsize 700
-        background "#08131ff2"
+        xsize (1300 if ui_is_small() else 920)
+        background "#211b22f2"
         padding (42, 32)
 
         vbox:
             spacing 24
             xalign 0.5
 
-            text "NEW INSIGHT" size 31 xalign 0.5 color "#ff8fab" bold True
-            text insight_text size 20 xalign 0.5 color "#f5fbff" text_align 0.5
+            text "Added to Records" size (42 if ui_is_small() else 33) xalign 0.5 color "#e7a36f" bold True
+            text insight_text size (41 if ui_is_small() else 32) xalign 0.5 color "#fff4df" text_align 0.5 line_spacing 4
 
-            textbutton "Save to Records":
-                action Hide("insight_popup")
+            textbutton "Continue":
+                action Return()
+                style_prefix "pw_primary"
                 xalign 0.5
-                background "#2ec4b6"
-                padding (30, 12)
-                hover_background "#43dbc7"
-                text_color "#04111a"
-                text_size 18
 
 
-screen streak_notification(days):
-
-    zorder 100
-
-    frame:
-        xalign 0.5
-        yalign 0.18
-        background "#123524"
-        padding (42, 26)
-
-        vbox:
-            spacing 8
-            xalign 0.5
-
-            text "[days] DAY STREAK" size 34 xalign 0.5 color "#f5fbff" bold True
-            text "Keep the momentum going." size 18 xalign 0.5 color "#8ee6b7"
-
-
-screen chapter_locked():
+screen ending_summary():
 
     modal True
+    zorder 180
+
+    add Solid("#100d12f2")
 
     frame:
         xalign 0.5
         yalign 0.5
-        xsize 760
-        ysize 560
-        background "#08131ff5"
-        padding (50, 40)
+        xsize (1740 if ui_is_small() else 1160)
+        background "#211b22f5"
+        padding (54 if ui_is_small() else 48, 44 if ui_is_small() else 38)
 
         vbox:
-            spacing 28
-            xalign 0.5
+            spacing (24 if ui_is_small() else 20)
 
-            text "CHAPTER LOCKED" size 38 xalign 0.5 color "#ff8fab" bold True
-            text "Unlock the next chapter in one of these ways:" size 22 xalign 0.5 color "#f5fbff"
+            text "Your ending" size (34 if ui_is_small() else 25) color "#e0b15f" bold True
+            text ending_title size (58 if ui_is_small() else 46) color "#fff4df" bold True
+            text ending_summary size (31 if ui_is_small() else 23) color "#dec9aa" line_spacing 5 xmaximum (1580 if ui_is_small() else 1040)
 
-            frame:
-                xalign 0.5
-                background "#112434"
-                padding (24, 22)
+            null height 6
+
+            hbox:
+                spacing (48 if ui_is_small() else 34)
 
                 vbox:
-                    spacing 14
-                    text "Wait until tomorrow for the free unlock." size 20 color "#8ee6b7"
-                    text "Pay $2 to unlock immediately." size 20 color "#ffd166"
-                    text "Refer 5 friends. Remaining: [get_referral_progress()]." size 20 color "#72ddf7"
+                    spacing 8
+                    text "Defining choice" size (24 if ui_is_small() else 17) color "#b7aa9a"
+                    text ending_path_label size (29 if ui_is_small() else 21) color "#fff4df" bold True
+
+                vbox:
+                    spacing 8
+                    text "Dominant trait" size (24 if ui_is_small() else 17) color "#b7aa9a"
+                    text dominant_trait size (29 if ui_is_small() else 21) color "#fff4df" bold True
+
+                vbox:
+                    spacing 8
+                    text "Endings found" size (24 if ui_is_small() else 17) color "#b7aa9a"
+                    text "[len(persistent.endings_unlocked)] of 6" size (29 if ui_is_small() else 21) color "#fff4df" bold True
+
+            frame:
+                background "#312936"
+                padding (28, 24)
+
+                grid 2 2:
+                    spacing 18
+                    text "Casey  [casey_relationship]/100" size (27 if ui_is_small() else 20) color "#fff4df"
+                    text "Jordan  [jordan_relationship]/100" size (27 if ui_is_small() else 20) color "#fff4df"
+                    text "Morgan  [morgan_relationship]/100" size (27 if ui_is_small() else 20) color "#fff4df"
+                    text "Riley  [riley_relationship]/100" size (27 if ui_is_small() else 20) color "#fff4df"
 
             hbox:
                 spacing 22
-                xalign 0.5
 
-                textbutton "WAIT":
-                    action Return("wait")
-                    background "#2b9348"
-                    padding (35, 15)
-                    hover_background "#3bac59"
-                    text_color "#f5fbff"
-                    text_size 18
+                textbutton "View Records":
+                    action Return("records")
+                    background "#3b333c"
+                    padding (30, 15)
+                    hover_background "#4c414b"
+                    text_color "#fff4df"
+                    text_size (26 if ui_is_small() else 19)
 
-                textbutton "PAY $2":
-                    action Return("pay")
-                    background "#ff9f1c"
-                    padding (35, 15)
-                    hover_background "#ffb347"
-                    text_color "#1d1200"
-                    text_size 18
-
-                textbutton "REFER":
-                    action [Hide("chapter_locked"), Show("referral_screen")]
-                    background "#3a86ff"
-                    padding (35, 15)
-                    hover_background "#5a9cff"
-                    text_color "#f5fbff"
-                    text_size 18
+                textbutton "Continue":
+                    action Return("continue")
+                    background "#d9a441"
+                    padding (30, 15)
+                    hover_background "#f0bd58"
+                    text_color "#20150a"
+                    text_size (26 if ui_is_small() else 19)

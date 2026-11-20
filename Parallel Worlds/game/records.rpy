@@ -3,13 +3,15 @@
 
 screen records_sidebar():
     modal True
+    zorder 90
+    key "game_menu" action Hide("records_sidebar")
 
     frame:
         xalign 0.0
         yalign 0.0
-        xsize (860 if renpy.variant("small") else 430)
+        xsize (990 if ui_is_small() else 570)
         ysize 1080
-        background "#091723f3"
+        background "#211b22f3"
         padding (34 if renpy.variant("small") else 26, 30 if renpy.variant("small") else 26)
 
         viewport:
@@ -23,42 +25,42 @@ screen records_sidebar():
                     spacing 10
                     xalign 0.5
 
-                    text "Parallel Worlds" size (34 if renpy.variant("small") else 26) xalign 0.5 color "#f5fbff" bold True
-                    text "Records" size (27 if renpy.variant("small") else 20) xalign 0.5 color "#72ddf7"
+                    text "Parallel Worlds" size (34 if renpy.variant("small") else 26) xalign 0.5 color "#fff4df" bold True
+                    text "Records" size (27 if renpy.variant("small") else 20) xalign 0.5 color "#e0b15f"
 
                 null height 14
 
                 vbox:
                     spacing 12
 
-                    text "Characters" size (28 if renpy.variant("small") else 20) color "#72ddf7" bold True
+                    text "Characters" size (28 if renpy.variant("small") else 20) color "#e0b15f" bold True
 
                     vbox:
                         spacing 8
 
-                        $ jordan_status = " [NO CONTACT]" if jordan_no_contact else ""
-                        $ jordan_color = "#5d7688" if jordan_no_contact else "#f5fbff"
+                        $ jordan_status = " [No Contact]" if jordan_no_contact else ""
+                        $ jordan_color = "#8f8477" if jordan_no_contact else "#fff4df"
                         textbutton "Jordan" + jordan_status:
                             action NullAction()
                             text_color jordan_color
                             text_size (24 if renpy.variant("small") else 16)
 
-                        $ casey_status = " [NO CONTACT]" if casey_no_contact else ""
-                        $ casey_color = "#5d7688" if casey_no_contact else "#f5fbff"
+                        $ casey_status = " [No Contact]" if casey_no_contact else ""
+                        $ casey_color = "#8f8477" if casey_no_contact else "#fff4df"
                         textbutton "Casey" + casey_status:
                             action NullAction()
                             text_color casey_color
                             text_size (24 if renpy.variant("small") else 16)
 
-                        $ morgan_status = " [NO CONTACT]" if morgan_no_contact else ""
-                        $ morgan_color = "#5d7688" if morgan_no_contact else "#f5fbff"
+                        $ morgan_status = " [No Contact]" if morgan_no_contact else ""
+                        $ morgan_color = "#8f8477" if morgan_no_contact else "#fff4df"
                         textbutton "Morgan" + morgan_status:
                             action NullAction()
                             text_color morgan_color
                             text_size (24 if renpy.variant("small") else 16)
 
-                        $ riley_status = " [NO CONTACT]" if riley_no_contact else ""
-                        $ riley_color = "#5d7688" if riley_no_contact else "#f5fbff"
+                        $ riley_status = " [No Contact]" if riley_no_contact else ""
+                        $ riley_color = "#8f8477" if riley_no_contact else "#fff4df"
                         textbutton "Riley" + riley_status:
                             action NullAction()
                             text_color riley_color
@@ -77,13 +79,13 @@ screen records_sidebar():
                         for location in locations_visited:
                             textbutton location:
                                 action NullAction()
-                                text_color "#f5fbff"
+                                text_color "#fff4df"
                                 text_size (24 if renpy.variant("small") else 16)
 
                         for location in locations_locked:
-                            textbutton location + " (LOCKED)":
+                            textbutton location + " (Locked)":
                                 action NullAction()
-                                text_color "#5d7688"
+                                text_color "#8f8477"
                                 text_size (24 if renpy.variant("small") else 16)
 
                 null height 12
@@ -98,24 +100,24 @@ screen records_sidebar():
 
                         vbox:
                             spacing 5
-                            text "Mask (Social Conformity)" size (21 if renpy.variant("small") else 14) color "#d7e6f1"
+                            text "Mask (Social Conformity)" size (21 if renpy.variant("small") else 14) color "#dec9aa"
                             hbox:
                                 bar value mask range 100 xsize (560 if renpy.variant("small") else 250) ysize (30 if renpy.variant("small") else 20)
-                                text " [mask]%" size (21 if renpy.variant("small") else 14) color "#f5fbff"
+                                text " [mask]%" size (21 if renpy.variant("small") else 14) color "#fff4df"
 
                         vbox:
                             spacing 5
-                            text "Truth (Integrity)" size (21 if renpy.variant("small") else 14) color "#d7e6f1"
+                            text "Truth (Integrity)" size (21 if renpy.variant("small") else 14) color "#dec9aa"
                             hbox:
                                 bar value truth range 100 xsize (560 if renpy.variant("small") else 250) ysize (30 if renpy.variant("small") else 20)
-                                text " [truth]%" size (21 if renpy.variant("small") else 14) color "#f5fbff"
+                                text " [truth]%" size (21 if renpy.variant("small") else 14) color "#fff4df"
 
                         vbox:
                             spacing 5
-                            text "Ambition (Drive)" size (21 if renpy.variant("small") else 14) color "#d7e6f1"
+                            text "Ambition (Drive)" size (21 if renpy.variant("small") else 14) color "#dec9aa"
                             hbox:
                                 bar value ambition range 100 xsize (560 if renpy.variant("small") else 250) ysize (30 if renpy.variant("small") else 20)
-                                text " [ambition]%" size (21 if renpy.variant("small") else 14) color "#f5fbff"
+                                text " [ambition]%" size (21 if renpy.variant("small") else 14) color "#fff4df"
 
                 null height 12
 
@@ -123,13 +125,13 @@ screen records_sidebar():
                     spacing 12
 
                     $ insight_count = len(insights_unlocked)
-                    text "Insights ([insight_count])" size (28 if renpy.variant("small") else 20) color "#c77dff" bold True
+                    text "Insights ([insight_count])" size (28 if renpy.variant("small") else 20) color "#d7a0a8" bold True
 
                     vbox:
                         spacing 8
 
                         for insight in insights_unlocked[-8:]:
-                            text "- " + insight size (20 if renpy.variant("small") else 13) color "#d7e6f1"
+                            text "- " + insight size (20 if renpy.variant("small") else 13) color "#dec9aa"
 
                 null height 12
 
@@ -142,17 +144,17 @@ screen records_sidebar():
                         spacing 8
 
                         for thread in active_threads:
-                            text "- " + thread size (21 if renpy.variant("small") else 14) color "#f5fbff"
+                            text "- " + thread size (21 if renpy.variant("small") else 14) color "#fff4df"
 
                 null height 30
 
                 textbutton "Close Records":
                     action Hide("records_sidebar")
                     xalign 0.5
-                    background "#ef476f"
+                    background "#8d5d66"
                     padding (30, 12)
-                    hover_background "#f06184"
-                    text_color "#f5fbff"
+                    hover_background "#a06f77"
+                    text_color "#fff4df"
                     text_size (24 if renpy.variant("small") else 16)
 
 
@@ -161,8 +163,8 @@ screen records_button():
         xalign (0.03 if renpy.variant("small") else 0.08)
         yalign (0.82 if renpy.variant("small") else 0.88)
         action Show("records_sidebar")
-        background "#0b1621dd"
+        background "#211b22dd"
         padding (26 if renpy.variant("small") else 22, 15 if renpy.variant("small") else 14)
-        hover_background "#214e70"
-        text_color "#f5fbff"
+        hover_background "#4c414b"
+        text_color "#fff4df"
         text_size (23 if renpy.variant("small") else 17)

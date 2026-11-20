@@ -19,7 +19,7 @@ label act4_opening:
     pause 2.0
 
     scene bg campus_day
-    play music "audio/music/ambient_city.mp3" fadein 2.0
+    play music "audio/music/ambient_city.wav" fadein 2.0
 
     show screen game_hud
 
@@ -106,7 +106,7 @@ label act4_path_A_testified:
 label act4_A_riley_response:
 
     scene bg library_steps_evening
-    play music "audio/music/ambient_city.mp3"
+    play music "audio/music/ambient_city.wav"
 
     show riley neutral at center
 
@@ -230,9 +230,7 @@ label act4_path_B_silent:
     pause 1.0
 
     $ insights_unlocked.append("The version of you that stayed silent is still you")
-    show screen insight_popup("The version of you that stayed silent is still you")
-    pause
-    hide screen insight_popup
+    call screen insight_popup("The version of you that stayed silent is still you")
 
     jump act4_B_riley_response
 
@@ -240,7 +238,7 @@ label act4_path_B_silent:
 label act4_B_riley_response:
 
     scene bg library_steps_evening
-    play music "audio/music/tension_rising.mp3" fadein 2.0
+    play music "audio/music/tension_rising.wav" fadein 2.0
 
     show riley serious at center
 
@@ -333,12 +331,12 @@ label B_riley_end:
 
     hide riley with dissolve
     stop music fadeout 2.0
-    play music "audio/music/ambient_city.mp3" fadein 2.0
+    play music "audio/music/ambient_city.wav" fadein 2.0
 
     pause 1.0
 
     "Late at night your phone buzzes."
-    play sound "audio/sfx/phone_buzz.mp3"
+    play sound "audio/sfx/phone_buzz.wav"
     pause 0.5
 
     scene bg phone_screen
@@ -394,9 +392,7 @@ label act4_path_C_deal:
     pause 1.5
 
     $ insights_unlocked.append("Getting the right result the 'wrong' way still gets the result")
-    show screen insight_popup("Getting the right result the 'wrong' way still gets the result")
-    pause
-    hide screen insight_popup
+    call screen insight_popup("Getting the right result the 'wrong' way still gets the result")
 
     jump act4_C_morgan_response
 
@@ -404,7 +400,7 @@ label act4_path_C_deal:
 label act4_C_morgan_response:
 
     scene bg cafe
-    play sound "audio/sfx/cafe_ambience.mp3"
+    play sound "audio/sfx/cafe_ambience.wav"
 
     show morgan neutral at left
 
@@ -432,7 +428,7 @@ label act4_C_morgan_response:
 label act4_C_anchor_response:
 
     scene bg rooftop_night
-    play music "audio/music/ambient_city.mp3"
+    play music "audio/music/ambient_city.wav"
 
     show anchor serious at right
 
@@ -612,7 +608,7 @@ label morgan_reply_cold:
 label act4_shared_final_anchor:
 
     scene bg rooftop_night
-    play music "audio/music/ambient_city.mp3" fadein 2.0
+    play music "audio/music/ambient_city.wav" fadein 2.0
 
     if persistent.narrator_enabled:
         pass
@@ -709,7 +705,7 @@ label act4_epilogue:
     ## Casey
     if casey_relationship >= 70:
         scene bg cafe
-        play music "audio/music/ambient_city.mp3" fadein 2.0
+        play music "audio/music/ambient_city.wav" fadein 2.0
         show casey neutral at center
 
         "Casey is waiting for you at your usual table."
@@ -727,9 +723,7 @@ label act4_epilogue:
             pause 1.0
             "Something in [casey_pronoun_possessive] smile stays."
             $ insights_unlocked.append("You and Casey found each other in the wreckage")
-            show screen insight_popup("You and Casey found each other in the wreckage")
-            pause
-            hide screen insight_popup
+            call screen insight_popup("You and Casey found each other in the wreckage")
 
         hide casey with dissolve
 
@@ -751,9 +745,7 @@ label act4_epilogue:
         jordan "Don't be a stranger."
 
         $ insights_unlocked.append("Jordan respects you now")
-        show screen insight_popup("Jordan respects you now")
-        pause
-        hide screen insight_popup
+        call screen insight_popup("Jordan respects you now")
 
         hide jordan with dissolve
 
@@ -794,9 +786,7 @@ label act4_epilogue:
         riley "Things like this — they get erased if no one keeps the record."
 
         $ insights_unlocked.append("Riley will keep the record")
-        show screen insight_popup("Riley will keep the record")
-        pause
-        hide screen insight_popup
+        call screen insight_popup("Riley will keep the record")
 
         hide riley with dissolve
 
@@ -810,7 +800,7 @@ label act4_epilogue:
 label act4_final_ending:
 
     scene bg room_night
-    play music "audio/music/ambient_city.mp3" fadein 2.0
+    play music "audio/music/ambient_city.wav" fadein 2.0
 
     if persistent.narrator_enabled:
         pass
@@ -824,67 +814,43 @@ label act4_final_ending:
 
     pause 2.0
 
-    ## Determine dominant stat for final monologue
-    if truth > mask and truth > ambition:
-        ## TRUTH ENDING
-        "You think about what it means to be honest."
-        pause 0.5
-        "Not just with other people."
-        pause 0.5
-        "With yourself."
-        pause 1.0
-        "You used to think the truth was a weapon."
-        "Something you could hold or withhold."
-        pause 0.5
-        "But it's not like that."
-        pause 0.5
-        "It's more like air."
-        pause 0.5
-        "You can't hold your breath forever."
+    $ finalize_story_ending()
 
-        $ insights_unlocked.append("You became someone who chooses truth even when it costs")
-        show screen insight_popup("You became someone who chooses truth even when it costs")
-        pause
-        hide screen insight_popup
+    if ending_id == "open_record":
+        "You put your name beside Riley's in the final record."
+        "Other students add theirs. Then staff. Then alumni."
+        "The truth stops belonging to any one person, which is why it becomes harder to bury."
 
-    elif mask > truth and mask > ambition:
-        ## MASK ENDING
-        "You think about how well you know yourself."
-        pause 0.5
-        "Or if you do at all."
-        pause 1.0
-        "You built walls this semester."
-        "Some of them kept you safe."
-        pause 0.5
-        "Some of them kept you alone."
-        pause 1.0
-        "The question isn't which walls to tear down."
-        "The question is: do you know which is which?"
+    elif ending_id == "bridge":
+        "The messages do not stop when the case does."
+        "Casey checks in. Jordan argues, then listens. Morgan sends a song without explanation."
+        "You did not save every relationship, but you learned how to stay when staying is difficult."
 
-        $ insights_unlocked.append("You are still becoming — the walls aren't permanent")
-        show screen insight_popup("You are still becoming — the walls aren't permanent")
-        pause
-        hide screen insight_popup
+    elif ending_id == "second_witness":
+        "Morgan's statement reaches you before midnight."
+        "It begins with your name and ends with theirs."
+        "Neither of you was brave alone. Together, you were enough."
 
-    else:
-        ## AMBITION ENDING
-        "You think about what you're building."
-        pause 0.5
-        "What it's for."
-        pause 0.5
-        "Who it's for."
-        pause 1.0
-        "Ambition isn't a flaw."
-        "But it can be a blindfold."
-        pause 0.5
-        "The sharpest version of you is the one that wants things."
-        pause 0.5
-        "AND knows why."
+    elif ending_id == "silent_witness":
+        "You write the testimony you could not say in the room."
+        "It does not undo your silence, but it refuses to disguise it."
+        "Tomorrow, you will ask Riley whether the record still has room for one late voice."
 
-        $ insights_unlocked.append("Ambition without purpose is just speed")
-        show screen insight_popup("Ambition without purpose is just speed")
-        pause
-        hide screen insight_popup
+    elif ending_id == "protected_self":
+        "Your calendar fills again. Your grades recover. The noise moves elsewhere."
+        "Safety feels exactly like you asked it to feel."
+        "Only now do you understand how quiet an empty room can become."
+
+    elif ending_id == "brokered_truth":
+        "The protections arrive in writing before your statement becomes public."
+        "The university calls it procedure. You call it leverage."
+        "You told the truth, but you also taught the institution that your safety was not free."
+
+    $ ending_insight = "Ending unlocked: " + ending_title
+    if ending_insight not in insights_unlocked:
+        $ insights_unlocked.append(ending_insight)
+
+    call screen insight_popup(ending_insight)
 
     pause 1.5
 
@@ -930,60 +896,16 @@ label act4_game_end:
 
     pause 1.0
 
-    ## Stats summary
-    python:
-        dominant = "Truth"
-        if mask > truth and mask > ambition:
-            dominant = "Mask"
-        elif ambition > truth and ambition > mask:
-            dominant = "Ambition"
-
-    centered "You played as: [persistent.player_name]"
-    pause 1.0
-    centered "Dominant trait: [dominant]"
-    pause 1.5
-
-    ## Relationship summary
-    if casey_relationship >= 70:
-        centered "Casey: Close"
-    elif casey_relationship >= 40:
-        centered "Casey: Distant but present"
-    else:
-        centered "Casey: Lost"
-
-    pause 0.5
-
-    if jordan_relationship >= 70:
-        centered "Jordan: Ally"
-    elif jordan_relationship >= 40:
-        centered "Jordan: Complicated"
-    else:
-        centered "Jordan: Estranged"
-
-    pause 0.5
-
-    if morgan_relationship >= 60:
-        centered "Morgan: Understood"
-    else:
-        centered "Morgan: Unresolved"
-
-    pause 0.5
-
-    if riley_relationship >= 50:
-        centered "Riley: Grateful"
-    else:
-        centered "Riley: Disappointed"
-
-    pause 2.0
-
-    centered "Your records have been saved."
-    pause 1.0
-    centered "Some choices take longer to understand."
-    pause 1.5
-    centered "Come back to them."
-    pause 2.0
-
     $ renpy.save("act4_final_save")
+
+    call screen ending_summary
+
+    if _return == "records":
+        show screen records_sidebar
+        "Press ESC when done viewing."
+        pause
+        hide screen records_sidebar
+        jump act4_game_end
 
     ## Hand off to the existing season 2 teaser logic
     if not persistent.seen_teaser:

@@ -2,7 +2,7 @@
 ## Explicit Ren'Py image definitions for all characters.
 ## - Gender-dynamic characters use ConditionSwitch (evaluates at display time)
 ## - Missing expressions alias to the nearest existing one
-## - Characters without sprite folders yet show Null() so game doesn't crash
+## - Characters with incomplete expression sets alias to the nearest existing one
 
 ## ==========================================
 ## JORDAN (single folder, gender doesn't change)
@@ -119,44 +119,43 @@ image riley quiet = ConditionSwitch(
     "True",                     "images/characters/riley_male/sad.png")
 
 ## ==========================================
-## MORGAN (gender-dynamic: needs morgan_male / morgan_female folders)
-## Shows Null() until sprite folders are created — game won't crash.
+## MORGAN
 ## ==========================================
 
-image morgan neutral    = Null()
-image morgan serious    = Null()
-image morgan frustrated = Null()
-image morgan listening  = Null()
-image morgan happy      = Null()
-image morgan sad        = Null()
+image morgan neutral    = "images/characters/morgan/neutral.png"
+image morgan serious    = "images/characters/morgan/serious.png"
+image morgan frustrated = "images/characters/morgan/frustrated.png"
+image morgan listening  = "images/characters/morgan/listening.png"
+image morgan happy      = "images/characters/morgan/happy.png"
+image morgan sad        = "images/characters/morgan/sad.png"
 
 ## Aliases
-image morgan quiet      = Null()
-image morgan nervous    = Null()
-image morgan worried    = Null()
-image morgan relieved   = Null()
+image morgan quiet      = "images/characters/morgan/sad.png"
+image morgan nervous    = "images/characters/morgan/worried.png"
+image morgan worried    = "images/characters/morgan/worried.png"
+image morgan relieved   = "images/characters/morgan/happy.png"
 
 ## ==========================================
-## ANCHOR (gender-dynamic: needs anchor_male / anchor_female folders)
+## ANCHOR
 ## ==========================================
 
-image anchor neutral   = Null()
-image anchor serious   = Null()
-image anchor listening = Null()
+image anchor neutral   = "images/characters/anchor/neutral.png"
+image anchor serious   = "images/characters/anchor/serious.png"
+image anchor listening = "images/characters/anchor/listening.png"
 
 ## Aliases
-image anchor quiet     = Null()
+image anchor quiet     = "images/characters/anchor/sad.png"
 
 ## ==========================================
-## PARENT (needs parent/ folder — Null until created)
+## PARENT
 ## ==========================================
 
-image parent neutral    = Null()
-image parent serious    = Null()
-image parent angry      = Null()
-image parent suspicious = Null()
-image parent frustrated = Null()
-image parent listening  = Null()
+image parent neutral    = "images/characters/parent/neutral.png"
+image parent serious    = "images/characters/parent/serious.png"
+image parent angry      = "images/characters/parent/angry.png"
+image parent suspicious = "images/characters/parent/suspicious.png"
+image parent frustrated = "images/characters/parent/frustrated.png"
+image parent listening  = "images/characters/parent/listening.png"
 
 ## ==========================================
 ## BACKGROUNDS
@@ -168,9 +167,9 @@ image bg library_steps_evening = "images/bg/library_steps_evening.png"
 image bg cafe                 = "images/bg/cafe.png"
 image bg rooftop_night        = "images/bg/rooftop_night.png"
 image bg dean_office          = "images/bg/dean_office.png"
-image bg room_night = "images/bg/rooftop_night.png"
-image bg phone_screen = Solid("#121b2b")
-image bg kitchen_morning = "images/bg/campus_day.png"
-image bg unknown_location = "images/bg/dean_office.png"
+image bg room_night           = "gui/main_menu.png"
+image bg phone_screen         = "images/bg/phone_screen.png"
+image bg kitchen_morning      = "images/bg/kitchen_morning.png"
+image bg unknown_location     = "images/bg/unknown_location.png"
 
 image white = Solid("#ffffff")
