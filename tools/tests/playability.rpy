@@ -16,8 +16,10 @@ testcase chapter_one_controls:
     click "Back"
     click "Resume"
     assert screen "choice"
+    run SetVariable("jordan_no_contact", True)
     click "Records"
     assert screen "records_sidebar"
+    assert "Jordan (No contact)"
     click "Close"
     assert screen "choice"
     click "Open Casey's text"

@@ -44,19 +44,19 @@ screen records_contents():
             vbox:
                 spacing 8
 
-                $ jordan_status = " [No Contact]" if jordan_no_contact else ""
+                $ jordan_status = " (No contact)" if jordan_no_contact else ""
                 $ jordan_color = "#8f8477" if jordan_no_contact else "#fff4df"
                 text "Jordan" + jordan_status color jordan_color size (24 if ui_is_small() else 16)
 
-                $ casey_status = " [No Contact]" if casey_no_contact else ""
+                $ casey_status = " (No contact)" if casey_no_contact else ""
                 $ casey_color = "#8f8477" if casey_no_contact else "#fff4df"
                 text "Casey" + casey_status color casey_color size (24 if ui_is_small() else 16)
 
-                $ morgan_status = " [No Contact]" if morgan_no_contact else ""
+                $ morgan_status = " (No contact)" if morgan_no_contact else ""
                 $ morgan_color = "#8f8477" if morgan_no_contact else "#fff4df"
                 text "Morgan" + morgan_status color morgan_color size (24 if ui_is_small() else 16)
 
-                $ riley_status = " [No Contact]" if riley_no_contact else ""
+                $ riley_status = " (No contact)" if riley_no_contact else ""
                 $ riley_color = "#8f8477" if riley_no_contact else "#fff4df"
                 text "Riley" + riley_status color riley_color size (24 if ui_is_small() else 16)
 
