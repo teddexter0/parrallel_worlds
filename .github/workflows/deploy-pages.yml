@@ -50,8 +50,9 @@ jobs:
           project="$GITHUB_WORKSPACE/Parallel Worlds"
           site="$RUNNER_TEMP/parallel-worlds"
           xvfb-run -a "$sdk/renpy.sh" "$project" lint
-          xvfb-run -a "$sdk/renpy.sh" launcher web_build "$project" --destination "$site"
+          xvfb-run -a "$sdk/renpy.sh" "$sdk/launcher" web_build "$project" --destination "$site"
           cp ParallelWorlds-1.0.0-dists/ParallelWorlds-1.0.0-web/index.html "$site/index.html"
+          printf '{"commit":"%s"}\n' "$GITHUB_SHA" > "$site/release.json"
 
       - name: Upload Pages artifact
         uses: actions/upload-pages-artifact@v3
