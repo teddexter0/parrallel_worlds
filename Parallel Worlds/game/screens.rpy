@@ -124,6 +124,28 @@ screen say(who, what):
             text what id "what" color "#fff8ea" size (50 if ui_is_small() else 43) line_spacing 5
 
 
+screen input(prompt):
+    frame:
+        xalign 0.5
+        yalign 0.55
+        xsize (1320 if ui_is_small() else 950)
+        background "#0c1523fa"
+        padding (44, 38)
+
+        vbox:
+            spacing 22
+            text prompt id "profile_prompt" size (48 if ui_is_small() else 38) color "#fff8ea" bold True
+            frame:
+                xfill True
+                padding (24, 14)
+                background "#243649"
+                input id "input" size (48 if ui_is_small() else 38) color "#fff8ea"
+            textbutton "Continue":
+                style_prefix "pw_primary"
+                action QueueEvent("input_enter")
+                yminimum (110 if ui_is_small() else 64)
+
+
 screen choice(items):
     modal True
     zorder 60

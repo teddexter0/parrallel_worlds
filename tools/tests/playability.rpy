@@ -19,7 +19,7 @@ testcase chapter_one_controls:
     run SetVariable("jordan_no_contact", True)
     click "Records"
     assert screen "records_sidebar"
-    assert "Jordan (No contact)"
+    assert eval (jordan_no_contact)
     click "Close"
     assert screen "choice"
     click "Open Casey's text"
@@ -50,3 +50,17 @@ testcase authored_endings:
     $ store.jordan_relationship = store.casey_relationship = store.riley_relationship = bonding
     $ store.morgan_relationship = morgan_score
     assert eval (resolve_story_ending() == outcome)
+
+testcase local_profile:
+    if not screen "main_menu":
+        run MainMenu(confirm=False)
+    pause until screen "main_menu"
+    $ persistent.player_name = None
+    run Start()
+    pause until id "profile_prompt"
+    click "Continue"
+    click "Non-binary"
+    click "My guardian"
+    advance until screen "game_hud"
+    assert eval (persistent.player_name == "Alex")
+    assert eval (persistent.parent_name == "Guardian")
