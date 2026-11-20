@@ -32,12 +32,10 @@ label act4_opening:
     "The university posted a statement."
     "Professor Harkins has been placed on administrative leave pending a full review."
 
-    pause 1.5
 
     "It's not an expulsion. It's not a conviction."
     "But it's something."
 
-    pause 1.0
 
     "Your name is not in the statement."
     "But people who were in that building know."
@@ -75,13 +73,11 @@ label act4_path_A_testified:
     "Students who liked him."
     "Students who are just scared of what the investigation might surface."
 
-    pause 1.5
 
     "But other people do look at you."
     "Different students."
     "The ones who didn't have the grades to buy their way to safety."
 
-    pause 1.5
 
     "One of them stops you after class."
 
@@ -91,7 +87,6 @@ label act4_path_A_testified:
 
     "Student" "Thank you."
 
-    pause 1.5
 
     "That's all."
     "They walk away."
@@ -126,7 +121,6 @@ label act4_A_riley_response:
     show riley quiet
 
     riley "That's not nothing."
-    pause 1.0
     riley "Took me two months to find someone willing to follow."
 
     pause 1.0
@@ -136,7 +130,6 @@ label act4_A_riley_response:
         $ riley_relationship += 10
     else:
         riley "I'm glad it's done."
-        pause 0.5
         riley "For what it's worth."
 
     hide riley with dissolve
@@ -167,27 +160,21 @@ label act4_A_jordan_response:
         show jordan quiet
 
         jordan "I know what it took."
-        pause 0.5
         jordan "I know it wasn't easy."
-        pause 1.0
         jordan "You were always good."
-        pause 0.5
         jordan "You just needed a minute to find it."
 
         $ jordan_relationship += 10
 
     elif jordan_relationship >= 40:
         jordan "It's done."
-        pause 0.5
         jordan "That's what matters."
 
     else:
         show jordan serious
 
         jordan "You should have said something sooner."
-        pause 1.0
         jordan "But you said it."
-        pause 0.5
         jordan "So."
 
     hide jordan with dissolve
@@ -212,18 +199,15 @@ label act4_path_B_silent:
     "Without corroboration."
     "The investigation stalled."
 
-    pause 1.0
 
     "The university issued a statement about 'insufficient evidence for disciplinary action.'"
     "Professor Harkins returned to his classes."
 
-    pause 1.5
 
     "You heard this from someone else."
     "You didn't follow the news closely."
     "You told yourself there was nothing you could have done differently."
 
-    pause 1.5
 
     "You almost believe it."
 
@@ -255,7 +239,6 @@ label act4_B_riley_response:
 
     riley "You saw what I saw and you went in there and said nothing."
 
-    pause 1.5
 
     menu:
         "What do you say?"
@@ -280,11 +263,8 @@ label B_riley_sorry:
     show riley quiet
 
     riley "..."
-    pause 1.5
     riley "I believe you."
-    pause 0.5
     riley "That doesn't help the people Harkins still has power over."
-    pause 1.0
     riley "But I believe you're sorry."
 
     $ riley_relationship += 5
@@ -302,7 +282,6 @@ label B_riley_deflect:
     show riley serious
 
     riley "It wasn't that complicated."
-    pause 1.0
 
     "Riley walks away."
     "You watch [riley_pronoun_object] go."
@@ -371,19 +350,16 @@ label act4_path_C_deal:
     "You testified."
     "But not before you got your guarantees."
 
-    pause 1.0
 
     "Some people call it smart."
     "Jordan doesn't call it anything."
     "Not to your face."
 
-    pause 1.5
 
     "The investigation moved forward."
     "Your name stayed out of the report, just like they promised."
     "Harkins is on leave."
 
-    pause 1.0
 
     "You got what you wanted."
     "The outcome you wanted."
@@ -411,7 +387,6 @@ label act4_C_morgan_response:
     show morgan neutral
 
     morgan "I respect that actually."
-    pause 1.0
     morgan "I wish I'd thought that clearly when I found the files."
 
     if morgan_relationship >= 60:
@@ -437,10 +412,8 @@ label act4_C_anchor_response:
     player "I did."
 
     anchor "Smart."
-    pause 1.0
     anchor "Is that how you feel about it?"
 
-    pause 1.5
 
     menu:
         "How do you feel about it?"
@@ -466,7 +439,6 @@ label C_feel_proud:
     player "Can't they?"
 
     anchor "For some people."
-    pause 1.0
     anchor "Good for you if you're one of them."
 
     jump act4_shared_final_anchor
@@ -499,10 +471,8 @@ label C_feel_doubt:
 
     anchor "And yet it still helped people."
 
-    pause 1.0
 
     anchor "Most choices aren't clean."
-    pause 0.5
     anchor "The question is whether you keep growing inside the mess."
 
     jump act4_shared_final_anchor
@@ -554,7 +524,6 @@ label morgan_reply_kind:
 
     nvl clear
     "YOU" "you don't have to apologize"
-    pause 1.0
     "MORGAN" "yeah i do"
     "MORGAN" "but thank you"
     nvl clear
@@ -572,7 +541,6 @@ label morgan_reply_accept:
 
     nvl clear
     "YOU" "thank you for saying that"
-    pause 1.0
     "MORGAN" "i mean it"
     nvl clear
 
@@ -590,7 +558,6 @@ label morgan_reply_cold:
 
     nvl clear
     "YOU" "you're right. it is."
-    pause 1.5
     "MORGAN" "..."
     nvl clear
 
@@ -625,10 +592,8 @@ label act4_shared_final_anchor:
 
     player "So."
 
-    pause 1.0
 
     anchor "How are you?"
-    pause 0.5
     anchor "And I mean actually."
 
     pause 1.5
@@ -636,33 +601,24 @@ label act4_shared_final_anchor:
     ## Dynamic reflection based on stats
     if truth >= 70:
         player "Tired. But clear."
-        pause 1.0
         anchor "Clear is rare."
-        pause 0.5
         anchor "Hold onto it."
 
     elif mask >= 70:
         player "Fine. I think."
-        pause 1.0
         anchor "You think."
-        pause 0.5
         anchor "Keep thinking."
 
     elif ambition >= 70:
         player "I got through it. I'm still here."
-        pause 1.0
         anchor "You are."
-        pause 0.5
         anchor "The question is who 'here' is."
 
     else:
         player "I don't fully know yet."
-        pause 1.0
         anchor "That's the most honest thing you've said."
-        pause 0.5
         anchor "Good."
 
-    pause 1.5
 
     anchor "You know what I've learned?"
 
@@ -671,10 +627,8 @@ label act4_shared_final_anchor:
     show anchor quiet
 
     anchor "Character isn't what you do when everything is easy."
-    pause 1.0
     anchor "It's what you do when the cost is real."
 
-    pause 1.5
 
     "The city stretches out below."
     "The semester ends."
@@ -720,7 +674,6 @@ label act4_epilogue:
             casey "We should celebrate somehow."
             player "Yeah?"
             casey "Yeah."
-            pause 1.0
             "Something in [casey_pronoun_possessive] smile stays."
             $ insights_unlocked.append("You and Casey found each other in the wreckage")
             call screen insight_popup("You and Casey found each other in the wreckage")
@@ -760,12 +713,10 @@ label act4_epilogue:
         show morgan neutral at center
 
         morgan "I'm going to start over next year."
-        pause 0.5
         morgan "Transfer. Different school."
         player "Running?"
         show morgan serious
         morgan "Resetting."
-        pause 1.0
         morgan "There's a difference."
 
         hide morgan with dissolve
@@ -782,7 +733,6 @@ label act4_epilogue:
         riley "I'm writing it all down."
         player "For what?"
         riley "So it doesn't get erased."
-        pause 0.5
         riley "Things like this — they get erased if no one keeps the record."
 
         $ insights_unlocked.append("Riley will keep the record")
@@ -858,13 +808,11 @@ label act4_final_ending:
     "No messages waiting."
     "The first quiet evening in weeks."
 
-    pause 1.0
 
     "You open a new document."
     "Blank page."
     "Cursor blinking."
 
-    pause 1.0
 
     "You start typing."
 
@@ -885,27 +833,13 @@ label act4_game_end:
 
     $ current_chapter = 7
 
-    show screen records_sidebar
-
-    centered "PARALLEL WORLDS"
-    pause 1.0
-    centered "Season 1 Complete."
-    pause 2.0
-
-    hide screen records_sidebar
-
-    pause 1.0
-
+    hide screen game_hud
     $ renpy.save("act4_final_save")
 
     call screen ending_summary
-
-    if _return == "records":
-        show screen records_sidebar
-        "Press ESC when done viewing."
-        pause
-        hide screen records_sidebar
-        jump act4_game_end
+    while _return == "records":
+        call screen records_sidebar(from_story=True)
+        call screen ending_summary
 
     ## Hand off to the existing season 2 teaser logic
     if not persistent.seen_teaser:

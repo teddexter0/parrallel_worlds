@@ -99,7 +99,8 @@ screen asset_credits():
 
     use pw_game_menu("Asset credits"):
         text "Cover and opening room: AI-generated artwork made for this game." size 34 color "#fff8ea"
-        text "Other backgrounds and character portraits: generated placeholder illustrations from this project's asset script." size 34 color "#fff8ea"
+        text "Café: {a=https://www.pexels.com/photo/interior-of-a-cafe-with-a-glass-wall-20281791/}Eren Arıcı{/a}. Nairobi skyline: {a=https://www.pexels.com/photo/stunning-nairobi-skyline-at-dusk-29069329/}Ken Mwaura{/a}. Both photographs are cropped and color-graded under the {a=https://www.pexels.com/license/}Pexels license{/a}." size 34 color "#fff8ea"
+        text "Remaining backgrounds and portraits: procedural illustrations." size 34 color "#fff8ea"
         text "City, café and suspense audio: synthesized for this game." size 34 color "#fff8ea"
         textbutton "Back" style_prefix "pw_primary" action [Hide("asset_credits"), Show("web_howto_popup")]
 
@@ -151,7 +152,7 @@ screen choice(items):
                             style_prefix "pw_action"
                             action item.action
                             xfill True
-                            yminimum (112 if ui_is_small() else 76)
+                            yminimum (124 if ui_is_small() else 76)
                             text_size (42 if ui_is_small() else 35)
 
 
@@ -164,8 +165,8 @@ screen game_hud():
         spacing 15
 
         text "Chapter [current_chapter]" yalign 0.5 size (37 if ui_is_small() else 27) color "#fff8ea" outlines [(3, "#0b1423")]
-        textbutton "Records" style_prefix "pw_action" action Show("records_sidebar") yminimum (102 if ui_is_small() else 64)
-        textbutton "Pause" style_prefix "pw_action" action ShowMenu("pause_menu") yminimum (102 if ui_is_small() else 64)
+        textbutton "Records" style_prefix "pw_action" action Show("records_sidebar") yminimum (120 if ui_is_small() else 64)
+        textbutton "Pause" style_prefix "pw_action" action ShowMenu("pause_menu") yminimum (120 if ui_is_small() else 64)
 
 
 screen pw_game_menu(title):
@@ -204,9 +205,9 @@ screen save():
 
 screen load():
     tag menu
-    use pw_slots("Load game", FileLoad)
+    use pw_slots("Load game", FileLoad, show_checkpoints=True)
 
-screen pw_slots(title, slot_action):
+screen pw_slots(title, slot_action, show_checkpoints=False):
     $ back_action = Return() if main_menu else ShowMenu("pause_menu")
     key "game_menu" action back_action
 
@@ -229,6 +230,13 @@ screen pw_slots(title, slot_action):
             for page in range(1, 5):
                 textbutton str(page) style_prefix "pw_action" action FilePage(page)
 
+        if show_checkpoints:
+            hbox:
+                spacing 14
+                for slot, title in (("act1_checkpoint", "Chapter 2"), ("act2_checkpoint", "Chapter 3"), ("act3_checkpoint", "Chapter 5"), ("act4_final_save", "Ending")):
+                    if renpy.can_load(slot):
+                        textbutton title style_prefix "pw_action" action FileLoad(slot, slot=True)
+
         textbutton "Back" style_prefix "pw_primary" action back_action
 
 
@@ -240,7 +248,7 @@ screen preferences():
     use pw_game_menu("Settings"):
         for label, setting in [("Text speed", "text speed"), ("Music volume", "music volume"), ("Sound effects", "sound volume")]:
             text label size (38 if ui_is_small() else 32) color "#fff8ea"
-            bar value Preference(setting) ysize 36
+            bar value Preference(setting) ysize (62 if ui_is_small() else 36)
         textbutton "Mute all" style_prefix "pw_action" action Preference("all mute", "toggle")
         textbutton "Back" style_prefix "pw_primary" action back_action
 

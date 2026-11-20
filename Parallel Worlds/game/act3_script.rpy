@@ -32,7 +32,6 @@ label act3_opening:
     "No names. Just the department. Just the dates."
     "But everyone on campus knows."
 
-    pause 1.5
 
     "And then your student email pings."
 
@@ -81,7 +80,6 @@ label act3_scene_morgan_meetup:
     player "Yeah."
 
     morgan "Me too."
-    pause 1.0
     morgan "Jordan too."
 
     pause 0.5
@@ -89,7 +87,6 @@ label act3_scene_morgan_meetup:
     show morgan serious
 
     morgan "I need you to understand something."
-    pause 0.5
     morgan "Before you go in there."
 
     menu:
@@ -129,7 +126,6 @@ label morgan_reveal_cautious:
     show morgan neutral
 
     morgan "Fair."
-    pause 0.5
     morgan "It's just... context."
 
     jump morgan_reveals_evidence
@@ -145,7 +141,6 @@ label morgan_reveal_firm:
     show morgan frustrated
 
     morgan "I'm not asking you to lie."
-    pause 0.5
     morgan "I'm asking you to understand why I did what I did."
 
     jump morgan_reveals_evidence
@@ -156,9 +151,7 @@ label morgan_reveals_evidence:
     show morgan serious
 
     morgan "I was the one who found the evidence."
-    pause 0.5
     morgan "Harkins' grading files. The payment records. All of it."
-    pause 0.5
     morgan "I found it by accident. I was doing research for [morgan_pronoun_possessive] seminar and..."
 
     "[morgan_pronoun_subject.capitalize()] trails off."
@@ -169,7 +162,6 @@ label morgan_reveals_evidence:
     "But you let Morgan say it."
 
     morgan "Twelve students. Three years."
-    pause 0.5
     morgan "Some of them — some of them weren't paying with money."
 
     pause 1.5
@@ -177,12 +169,9 @@ label morgan_reveals_evidence:
     show morgan quiet
 
     morgan "I panicked."
-    pause 0.5
     morgan "I thought — if I had something this big, maybe I could protect myself."
-    pause 0.5
     morgan "Maybe I could make sure nothing like that ever happened to me."
 
-    pause 1.5
 
     "Something shifts in your chest."
 
@@ -195,20 +184,14 @@ label morgan_reveals_evidence:
 
     morgan "Still am."
 
-    pause 1.0
 
     morgan "Jordan wanted to go straight to the dean."
-    pause 0.5
     morgan "And Jordan was right. I know that now."
-    pause 0.5
     morgan "But I froze."
 
-    pause 1.0
 
     morgan "I just need you to tell them the truth about what you saw."
-    pause 0.5
     morgan "Not about what you think of me."
-    pause 0.5
     morgan "Just what you saw."
 
     menu:
@@ -234,7 +217,6 @@ label morgan_respond_truth:
     show morgan quiet
 
     morgan "Okay."
-    pause 1.0
     morgan "Okay. That's all I can ask."
 
     jump morgan_scene_end
@@ -250,7 +232,6 @@ label morgan_respond_neutral:
     show morgan relieved
 
     morgan "That's enough."
-    pause 0.5
     morgan "That's more than enough."
 
     jump morgan_scene_end
@@ -265,7 +246,6 @@ label morgan_respond_ambiguous:
     show morgan serious
 
     morgan "Don't take too long."
-    pause 0.5
     morgan "Friday is in two days."
 
     jump morgan_scene_end
@@ -337,7 +317,6 @@ label jordan_meet_no:
     nvl clear
     "YOU" "{size=14}7:50 PM{/size}"
     "YOU" "not right now"
-    pause 1.5
     "JORDAN" "{size=14}7:51 PM{/size}"
     "JORDAN" "ok"
     nvl clear
@@ -359,7 +338,6 @@ label jordan_meet_delay:
     nvl clear
     "YOU" "{size=14}7:50 PM{/size}"
     "YOU" "maybe tomorrow?"
-    pause 1.5
     "JORDAN" "{size=14}7:52 PM{/size}"
     "JORDAN" "fine."
     nvl clear
@@ -389,7 +367,6 @@ label jordan_meet_yes:
 
     player "Of course."
 
-    pause 0.5
 
     jordan "I need to know where you stand."
 
@@ -402,23 +379,17 @@ label jordan_meet_yes:
     show jordan quiet
 
     jordan "I did the right thing. I pushed Morgan to report it."
-    pause 0.5
     jordan "Morgan didn't want to."
-    pause 0.5
     jordan "You know what happened next."
 
     player "I walked away."
 
     jordan "Yeah."
 
-    pause 1.0
 
     jordan "I'm not angry at you."
-    pause 0.5
     jordan "I get it. It's messy. It's complicated."
-    pause 1.0
     jordan "But Harkins is still there."
-    pause 0.5
     jordan "Teaching. Grading. Still there."
 
     pause 1.5
@@ -426,12 +397,9 @@ label jordan_meet_yes:
     show jordan serious
 
     jordan "I need to know if you're going to tell them what you saw."
-    pause 0.5
     jordan "Because if you don't..."
-    pause 0.5
     jordan "Riley's testimony isn't enough. They already told [riley_pronoun_object] that."
 
-    pause 1.0
 
     menu:
         "What do you tell Jordan?"
@@ -458,7 +426,6 @@ label jordan_respond_yes:
     "Something in Jordan's shoulders releases."
 
     jordan "Okay."
-    pause 0.5
     jordan "Thank you."
 
     jump jordan_scene_end
@@ -473,9 +440,7 @@ label jordan_respond_maybe:
     show jordan frustrated
 
     jordan "There are people who got hurt by Harkins."
-    pause 0.5
     jordan "Real hurt."
-    pause 0.5
     jordan "This isn't abstract."
 
     jump jordan_scene_end
@@ -491,7 +456,6 @@ label jordan_respond_honest:
     show jordan neutral
 
     jordan "At least that's honest."
-    pause 1.0
     jordan "Just... think about who you want to be when this is over."
 
     jump jordan_scene_end
@@ -564,9 +528,7 @@ label casey_support_yes:
 
     nvl clear
     "YOU" "yeah. can't sleep."
-    pause 1.0
     "CASEY" "same"
-    pause 0.5
     "CASEY" "you ok?"
     nvl clear
 
@@ -582,7 +544,6 @@ label casey_support_yes:
     player "Hey."
 
     casey "You don't have to tell me everything."
-    pause 0.5
     casey "But if you want to talk, I'm here."
 
     pause 1.0
@@ -590,15 +551,12 @@ label casey_support_yes:
     if recall("casey_secret_shared") == True:
         ## Casey already knows - deeper conversation
         casey "I already know some of it."
-        pause 0.5
         casey "I just want to know you're okay."
 
         player "I don't know if I am."
 
         casey "That's honest."
-        pause 0.5
         casey "Whatever happens tomorrow — you're still you after it."
-        pause 0.5
         casey "Don't forget that."
 
         $ casey_relationship += 10
@@ -606,13 +564,11 @@ label casey_support_yes:
     else:
         ## Casey doesn't know - general support
         casey "Whatever's going on..."
-        pause 0.5
         casey "I'm not going anywhere."
 
         player "You don't know what's going on."
 
         casey "Doesn't matter."
-        pause 1.0
         casey "I know you."
 
     pause 1.0
@@ -652,14 +608,12 @@ label act3_major_choice_approach:
     player "You know?"
 
     anchor "Word gets around."
-    pause 1.0
     anchor "How are you sitting with it?"
 
     player "Not great."
 
     anchor "What are you afraid of?"
 
-    pause 1.5
 
     menu:
         "What are you most afraid of?"
@@ -683,14 +637,10 @@ label anchor_fear_cost:
     show anchor listening
 
     anchor "That's real."
-    pause 0.5
     anchor "Some of those people will stay angry."
-    pause 0.5
     anchor "That's also real."
-    pause 1.0
     anchor "The question is: what does it cost you NOT to?"
 
-    pause 1.0
 
     "You don't answer."
     "But you think about it."
@@ -707,9 +657,7 @@ label anchor_fear_self:
     show anchor serious
 
     anchor "That's the harder fear."
-    pause 0.5
     anchor "Easier to live with external consequences."
-    pause 0.5
     anchor "Harder to live with knowing what you didn't do."
 
     jump anchor_pre_choice_end
@@ -724,10 +672,8 @@ label anchor_fear_wrong:
     show anchor neutral
 
     anchor "The wrong thing is a very precise fear."
-    pause 0.5
     anchor "Usually means you already know what the right thing is."
 
-    pause 1.0
 
     "You don't say anything."
     "The Anchor lets the silence be."
@@ -740,11 +686,8 @@ label anchor_pre_choice_end:
     show anchor neutral
 
     anchor "Whatever you decide tomorrow."
-    pause 0.5
     anchor "Make sure it's yours."
-    pause 0.5
     anchor "Not theirs. Not Jordan's. Not Morgan's."
-    pause 1.0
     anchor "Yours."
 
     hide anchor with dissolve
@@ -783,31 +726,25 @@ label act3_major_choice:
     "Two university investigators on one side of the table."
     "An empty chair for you on the other."
 
-    pause 1.0
 
     "They introduce themselves."
     "You don't retain the names."
 
-    pause 0.5
 
     "One of them places a recorder on the table."
 
     "Investigator" "We understand you were present in the university library on the evening of October 14th."
 
-    pause 0.5
 
     "Investigator" "We're asking you to share what you witnessed that night."
 
-    pause 1.0
 
     "Investigator" "You are not under suspicion. You are being asked as a potential witness to events relevant to our review."
 
-    pause 1.0
 
     "The recorder blinks."
     "The room waits."
 
-    pause 1.5
 
     ## This is the critical branch
     menu:
@@ -843,35 +780,23 @@ label major_choice_A_testify:
     "You take a breath."
     "And you start talking."
 
-    pause 1.0
 
     player "I was in the library on October 14th. Around 11 PM."
-    pause 0.5
     player "I saw Jordan and Morgan in the east reading room."
-    pause 0.5
     player "They were arguing. Morgan had something on their laptop — files, I think. Records."
-    pause 0.5
     player "Jordan wanted to report it. Morgan didn't — not yet."
-    pause 0.5
     player "I heard enough to understand it was about Professor Harkins."
-    pause 0.5
     player "About grades. About payments."
-    pause 0.5
     player "And then I left."
 
-    pause 1.5
 
     "Investigator" "And why did you leave?"
 
-    pause 1.0
 
     player "Because I was scared."
-    pause 0.5
     player "And I didn't want to be involved."
-    pause 0.5
     player "I was wrong not to come forward sooner."
 
-    pause 1.5
 
     "The investigator writes something."
     "The recorder blinks."
@@ -899,11 +824,9 @@ label major_choice_B_silent:
     "The table."
     "Your hands."
 
-    pause 1.0
 
     player "I don't think I have anything relevant to share."
 
-    pause 1.0
 
     "The investigator's pen pauses."
 
@@ -913,24 +836,19 @@ label major_choice_B_silent:
 
     "Investigator" "Did you observe any interaction between students Jordan and Morgan?"
 
-    pause 1.0
 
     player "I may have seen them. I didn't pay attention."
 
-    pause 1.0
 
     "The investigator glances at their colleague."
 
     "Investigator" "Alright."
-    pause 0.5
     "Investigator" "If you remember anything else, please reach out."
 
-    pause 1.5
 
     "They hand you a card."
     "The session is over in four minutes."
 
-    pause 1.0
 
     "You walk out into the hallway."
     "Riley is waiting on a bench."
@@ -971,29 +889,24 @@ label major_choice_C_deal:
 
     player "Before I say anything — I'd like to know what protections are in place for witnesses."
 
-    pause 0.5
 
     "Investigator" "This is a university conduct review, not a legal proceeding."
 
     player "I understand. But if what I share has implications — academic or otherwise — I want to make sure my standing isn't affected."
 
-    pause 1.0
 
     "The two investigators look at each other."
 
     "Investigator" "Any information you provide would be treated as protected witness testimony."
-    pause 0.5
     "Investigator" "Your academic record would not be part of this review."
 
     player "And what about my name in any public findings?"
 
     "Investigator" "Witnesses are not named in the official report."
 
-    pause 1.0
 
     "You've gotten what you came for."
 
-    pause 1.0
 
     "You tell them what you saw."
     "Everything."
@@ -1021,13 +934,11 @@ label major_choice_D_morgan_gambit:
 
     player "Could I have five minutes? There's someone I need to speak to first."
 
-    pause 0.5
 
     "Investigator" "The session is scheduled for—"
 
     player "Five minutes. I'll be right back."
 
-    pause 0.5
 
     "The investigator looks at the clock. Then nods."
 
@@ -1041,7 +952,6 @@ label major_choice_D_morgan_gambit:
     morgan "How'd it go?"
 
     player "I asked for five minutes."
-    pause 0.5
     player "Morgan. Come in with me."
 
     show morgan serious
@@ -1065,11 +975,8 @@ label morgan_gambit_success:
     show morgan quiet
 
     morgan "I..."
-    pause 1.0
     morgan "Yeah."
-    pause 0.5
     morgan "Okay."
-    pause 0.5
     morgan "Yeah."
 
     $ morgan_relationship += 25
@@ -1095,7 +1002,6 @@ label morgan_gambit_fail:
     show morgan serious
 
     morgan "I can't."
-    pause 0.5
     morgan "I'm sorry. I can't."
 
     hide morgan
@@ -1106,7 +1012,6 @@ label morgan_gambit_fail:
     "Five minutes almost up."
     "You go back in alone."
 
-    pause 1.0
 
     "You tell them what you saw."
     "Morgan's decision is [morgan_pronoun_possessive] own."
@@ -1137,7 +1042,6 @@ label act3_aftermath_shared:
     "Students between classes. Bikes. Pigeons."
     "None of them know what just happened in that room."
 
-    pause 1.5
 
     "Your phone starts filling up."
 
@@ -1149,7 +1053,6 @@ label act3_aftermath_shared:
 
     "Word travels fast."
 
-    pause 1.0
 
     "Whatever you said in there — or didn't say — it's done."
 
@@ -1159,14 +1062,10 @@ label act3_aftermath_shared:
     stop music fadeout 2.0
     pause 1.0
 
-    show screen records_sidebar
 
     centered "CHAPTER 3 COMPLETE"
-    pause 1.0
-    centered "Your decision has been made."
     pause 2.0
 
-    hide screen records_sidebar
 
     $ current_chapter = 4
     $ renpy.save("act3_checkpoint")

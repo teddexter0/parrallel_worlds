@@ -31,7 +31,6 @@ label act2_opening:
     "Campus looks the same."
     "But everything feels different."
 
-    pause 1.0
 
     "You slept two hours. Maybe three."
     "Your head keeps replaying the same question:"
@@ -67,7 +66,6 @@ label act2_scene_campus_walk:
     "Then you see Jordan."
     "[jordan_pronoun_subject.capitalize()] spots you at the same moment."
 
-    pause 0.5
 
     "Neither of you moves first."
 
@@ -95,13 +93,11 @@ label act2_approach_jordan:
 
     player "Hey."
 
-    pause 1.0
 
     jordan "You look terrible."
     player "Didn't sleep."
     jordan "Yeah."
 
-    pause 1.0
 
     jordan "Me neither."
 
@@ -115,7 +111,6 @@ label act2_approach_jordan:
 
     jordan "Just... don't. Not with me."
 
-    pause 1.0
 
     "You realize Jordan knows more than [jordan_pronoun_subject] is saying."
 
@@ -135,12 +130,10 @@ label act2_avoid_jordan:
     "Pretend to read something."
     "Walk past."
 
-    pause 1.0
 
     "Jordan doesn't call after you."
     "That's almost worse."
 
-    pause 1.0
 
     "You feel [jordan_pronoun_possessive] eyes on your back all the way to the library steps."
 
@@ -177,7 +170,6 @@ label act2_scene_casey_confrontation:
     "Coffee. Headphones. Your own head."
     "You need twenty minutes to think."
 
-    pause 1.0
 
     "You don't get them."
 
@@ -211,7 +203,6 @@ label casey_conf_honest:
     show casey concerned
 
     casey "Yeah. I can see that."
-    pause 0.5
     casey "What's going on?"
 
     jump casey_conf_pressure
@@ -227,7 +218,6 @@ label casey_conf_deflect:
     show casey suspicious
 
     casey "Really."
-    pause 0.5
     casey "I sent you four messages."
 
     player "I've been busy."
@@ -247,7 +237,6 @@ label casey_conf_casual:
     show casey serious
 
     casey "Don't do that."
-    pause 0.5
     casey "Don't act like everything's normal."
 
     jump casey_conf_pressure
@@ -258,7 +247,6 @@ label casey_conf_pressure:
     show casey serious
 
     casey "People are talking."
-    pause 0.5
     casey "They're saying you were there."
 
     "Your coffee cup stops halfway to your lips."
@@ -266,14 +254,12 @@ label casey_conf_pressure:
     player "There where?"
 
     casey "The library. Two months ago."
-    pause 0.5
     casey "The night Morgan and Jordan—"
 
     "[casey_pronoun_subject.capitalize()] stops."
 
     casey "You were there. Weren't you."
 
-    pause 1.5
 
     "It's not a question."
 
@@ -298,13 +284,11 @@ label casey_conf_admit:
     $ remember("casey_secret_shared", True)
 
     player "Yeah."
-    pause 0.5
     player "I was there."
 
     show casey quiet
 
     casey "Okay."
-    pause 1.0
     casey "Okay. That's... okay."
 
     "You wait for [casey_pronoun_object] to ask more."
@@ -332,14 +316,12 @@ label casey_conf_vague:
     show casey frustrated
 
     casey "I've heard your name. That's what I've heard."
-    pause 0.5
     casey "From more than one person."
 
     player "People talk."
 
     casey "Yeah. They do."
 
-    pause 1.0
 
     casey "I just hope you're not hiding something from me."
 
@@ -356,14 +338,12 @@ label casey_conf_redirect:
     show casey neutral
 
     casey "Does it matter?"
-    pause 0.5
     casey "The point is people know. Or think they know."
 
     player "What exactly are they saying?"
 
     casey "That you saw something. And stayed quiet."
 
-    pause 1.0
 
     "The accuracy of that lands heavier than [casey_pronoun_subject] probably intended."
 
@@ -375,7 +355,6 @@ label casey_conf_end:
     show casey neutral
 
     casey "Just... be careful, okay?"
-    pause 0.5
     casey "Whatever this is."
 
     "[casey_pronoun_subject.capitalize()] stands. Squeezes your shoulder."
@@ -429,11 +408,8 @@ label act2_scene_morgan_text:
     scene bg campus_day
 
     "Don't."
-    pause 1.0
     "Morgan knows about the meeting."
-    pause 0.5
     "Or suspects."
-    pause 1.0
 
     menu:
         "How do you reply to Morgan?"
@@ -458,7 +434,6 @@ label morgan_text_probe:
     nvl clear
     "YOU" "{size=14}2:19 PM{/size}"
     "YOU" "why not? what do you know?"
-    pause 1.5
     "MORGAN" "{size=14}2:22 PM{/size}"
     "MORGAN" "enough."
     "MORGAN" "{size=14}2:23 PM{/size}"
@@ -482,7 +457,6 @@ label morgan_text_delay:
     nvl clear
     "YOU" "{size=14}2:19 PM{/size}"
     "YOU" "i'll reach out tomorrow"
-    pause 1.5
     "MORGAN" "{size=14}2:21 PM{/size}"
     "MORGAN" "please do."
     nvl clear
@@ -532,7 +506,6 @@ label act2_scene_riley_reveal:
     "The library steps are mostly empty."
     "Students heading to dinner. Lights coming on across campus."
 
-    pause 1.0
 
     "Someone is already there."
 
@@ -547,7 +520,6 @@ label act2_scene_riley_reveal:
 
     riley "I'm not."
 
-    pause 1.0
 
     riley "My name is Riley."
 
@@ -557,12 +529,9 @@ label act2_scene_riley_reveal:
 
     "The unknown number."
 
-    pause 1.0
 
     riley "I was in the library that night too."
-    pause 0.5
     riley "I saw you watching them."
-    pause 0.5
     riley "Then I saw you leave."
 
     "Your jaw tightens."
@@ -570,7 +539,6 @@ label act2_scene_riley_reveal:
     player "So you've been watching me."
 
     riley "I've been waiting for you to do the right thing."
-    pause 0.5
     riley "You haven't."
 
     menu:
@@ -597,7 +565,6 @@ label riley_pushback:
 
     riley "Then tell me."
 
-    pause 1.0
 
     riley "I've got time."
 
@@ -614,10 +581,8 @@ label riley_direct:
     show riley neutral
 
     riley "Same thing you want."
-    pause 0.5
     riley "For this to be over."
 
-    pause 1.0
 
     riley "But it won't be. Not unless someone talks."
 
@@ -633,12 +598,9 @@ label riley_deflect:
     show riley quiet
 
     riley "I tried."
-    pause 1.0
     riley "They said I needed a corroborating witness."
-    pause 0.5
     riley "They said one student's word against a professor with fifteen years tenure wasn't enough."
 
-    pause 1.0
 
     riley "So here I am. Asking you."
 
@@ -650,18 +612,14 @@ label riley_reveal_full:
     show riley serious
 
     riley "Professor Harkins."
-    pause 0.5
     riley "Two months ago, Jordan found proof."
-    pause 0.5
     riley "Grade changes. Twelve students. Three years."
 
     "The words land one at a time."
 
     riley "Some paid. Cash. Through a tutoring front."
-    pause 0.5
     riley "Some... didn't pay with money."
 
-    pause 1.5
 
     "The silence after that sentence is very loud."
 
@@ -669,16 +627,11 @@ label riley_reveal_full:
     call screen insight_popup("The corruption is worse than you assumed")
 
     riley "Jordan showed Morgan the evidence."
-    pause 0.5
     riley "Morgan wanted to use it as leverage."
-    pause 0.5
     riley "Jordan wanted to report it."
-    pause 0.5
     riley "You walked in on that argument."
-    pause 0.5
     riley "And then you walked out."
 
-    pause 1.5
 
     "You did."
     "You remember it now."
@@ -691,7 +644,6 @@ label riley_reveal_full:
     pause 1.0
 
     riley "I'm not asking you to be a hero."
-    pause 0.5
     riley "I'm asking you to tell the truth."
 
     menu:
@@ -717,9 +669,7 @@ label riley_response_maybe:
     show riley neutral
 
     riley "Fair."
-    pause 0.5
     riley "But I go to the dean at the end of the week."
-    pause 0.5
     riley "With or without you."
 
     jump riley_scene_end
@@ -737,9 +687,7 @@ label riley_response_yes:
     show riley quiet
 
     riley "Just tell them what you saw."
-    pause 0.5
     riley "Exactly what you saw."
-    pause 1.0
     riley "Don't add. Don't subtract."
 
     jump riley_scene_end
@@ -756,7 +704,6 @@ label riley_response_no:
     show riley serious
 
     riley "You're already involved."
-    pause 1.0
     riley "You were involved the night you walked away."
 
     "That hits."
@@ -780,7 +727,6 @@ label riley_scene_end:
     "Campus goes quiet around you."
     "The library doors are still lit."
 
-    pause 1.0
 
     "You think about the night two months ago."
     "What you saw."
@@ -810,7 +756,6 @@ label act2_scene_anchor:
     "You end up on the roof of the humanities building."
     "You don't know why. You just kept walking up stairs."
 
-    pause 1.0
 
     "Someone is already there."
 
@@ -818,7 +763,6 @@ label act2_scene_anchor:
 
     "Older. Grad student maybe. Sitting with coffee and a book like the world isn't on fire."
 
-    pause 0.5
 
     anchor "You look like someone who just got handed something they didn't ask for."
 
@@ -827,7 +771,6 @@ label act2_scene_anchor:
     show anchor quiet
 
     anchor "No. It's just a very specific look."
-    pause 0.5
     anchor "Sit. If you want."
 
     menu:
@@ -852,7 +795,6 @@ label anchor_sit_no:
     player "You don't know me."
 
     anchor "True."
-    pause 0.5
     anchor "Come back if you change your mind."
 
     jump anchor_end
@@ -869,7 +811,6 @@ label anchor_sit_yes:
     player "What kind of name is that?"
 
     anchor "The kind you get when people keep coming to you to not drift away."
-    pause 1.0
     anchor "What's yours?"
 
     player "[persistent.player_name]."
@@ -879,10 +820,8 @@ label anchor_sit_yes:
     player "What?"
 
     anchor "Whatever you're carrying."
-    pause 0.5
     anchor "It has a shape. Describe the shape."
 
-    pause 1.0
 
     menu:
         "You describe it:"
@@ -907,9 +846,7 @@ label anchor_guilt_path:
     show anchor listening
 
     anchor "Guilt. Good shape to know."
-    pause 1.0
     anchor "Guilt means you still have a standard."
-    pause 0.5
     anchor "The question is what you do with it."
 
     jump anchor_end
@@ -925,9 +862,7 @@ label anchor_pressure_path:
     show anchor listening
 
     anchor "That's not their job to resolve."
-    pause 0.5
     anchor "What do you want?"
-    pause 1.0
     anchor "Not what's safe. What do you actually want?"
 
     "You don't answer right away."
@@ -946,15 +881,12 @@ label anchor_cost_path:
     show anchor serious
 
     anchor "Then you know more than most people."
-    pause 1.0
     anchor "Most people convince themselves they don't know."
-    pause 0.5
     anchor "Makes it easier."
 
     player "That's not helpful."
 
     anchor "No. It's just true."
-    pause 0.5
     anchor "Helpful comes later."
 
     jump anchor_end
@@ -965,7 +897,6 @@ label anchor_end:
     show anchor neutral
 
     anchor "Come find me again."
-    pause 0.5
     anchor "I'm usually up here."
 
     hide anchor with dissolve
@@ -979,7 +910,6 @@ label anchor_end:
     "Morgan is scared."
     "Casey is worried about you."
 
-    pause 1.5
 
     "And you're up here."
     "Deciding who you are."
@@ -999,17 +929,12 @@ label act2_chapter_end:
     stop music fadeout 2.0
     pause 1.0
 
-    show screen records_sidebar
 
     centered "CHAPTER 2 COMPLETE"
-    pause 1.0
-    centered "The investigation is now formal."
-    pause 1.0
     centered "The university has announced a review of Professor Harkins."
 
     pause 2.0
 
-    hide screen records_sidebar
 
     $ current_chapter = 3
     $ renpy.save("act2_checkpoint")

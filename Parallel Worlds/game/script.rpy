@@ -140,7 +140,6 @@ label check_authority_first:
     
     "You open the message from [parent_name]."
     
-    pause 0.5
     
     ## Phone message display
     nvl clear
@@ -180,7 +179,6 @@ label check_casey_first:
     
     "You open Casey's message."
     
-    pause 0.5
     
     nvl clear
     "CASEY" "{size=14}11:43 PM{/size}"
@@ -225,12 +223,10 @@ label check_unknown_first:
     
     "You open the message from the unknown number."
     
-    pause 1.0
     
     nvl clear
     "UNKNOWN" "{size=14}11:46 PM{/size}"
     "UNKNOWN" "I know what you did."
-    pause 1.0
     "UNKNOWN" "{size=14}11:47 PM{/size}"
     "UNKNOWN" "You have 24 hours."
     nvl clear
@@ -244,7 +240,6 @@ label check_unknown_first:
     "The words blur."
     "Your hands shake."
     
-    pause 1.0
     
     "What do they know?"
     "How did they find out?"
@@ -279,7 +274,6 @@ label ignore_all_messages:
     
     "You silence your phone and turn back to your work."
     
-    pause 1.0
     
     "Problems can wait."
     "This deadline can't."
@@ -296,7 +290,6 @@ label ignore_all_messages:
     "Your phone keeps buzzing."
     "But you don't look."
     
-    pause 1.0
     
     "An hour passes."
     
@@ -322,7 +315,6 @@ label post_first_message_check:
         "But when you check it..."
         "All three messages are still there."
     
-    pause 1.0
     
     "You know they won't just disappear."
     
@@ -360,7 +352,6 @@ label act1_morning_confrontation:
     "Coffee. Newspaper. The usual morning routine."
     "But [parent_pronoun_possessive] face is different today."
     
-    pause 1.0
     
     parent "Sit down."
     
@@ -389,7 +380,6 @@ label confrontation_comply:
     "Wait for [parent_pronoun_object] to speak first."
     
     parent "I got a call yesterday."
-    pause 0.5
     parent "From the university."
     
     "Your stomach drops."
@@ -405,7 +395,6 @@ label confrontation_question:
     player "What's this about?"
     
     parent "Don't play games with me."
-    pause 0.5
     parent "You know exactly what this is about."
     
     "But you don't."
@@ -431,7 +420,6 @@ label confrontation_avoid:
 
 label confrontation_reveal:
     parent "Someone reached out to the university."
-    pause 0.5
     parent "Made some... allegations."
     
     if persistent.narrator_enabled:
@@ -441,12 +429,9 @@ label confrontation_reveal:
     "The room feels smaller."
     
     parent "They claim you witnessed something."
-    pause 0.5
     parent "Something serious."
-    pause 0.5
     parent "And that you never reported it."
     
-    pause 1.0
     
     "Your mind races."
     "What did you see?"
@@ -479,7 +464,6 @@ label confrontation_deny:
     player "I don't know what you're talking about."
     
     parent "Really."
-    pause 0.5
     parent "Because whoever made this claim seems pretty certain."
     
     "[parent_pronoun_possessive] eyes bore into you."
@@ -499,9 +483,7 @@ label confrontation_clarify:
     player "What exactly are they saying I saw?"
     
     parent "They didn't specify."
-    pause 0.5
     parent "Just that it happened on campus."
-    pause 0.5
     parent "Two months ago."
     
     "Two months ago."
@@ -523,12 +505,10 @@ label confrontation_partial_admit:
     $ mask -= 10
     
     player "I... might have seen something."
-    pause 0.5
     player "But it's not what you think."
     
     parent "Then tell me what it is."
     
-    pause 1.0
     
     menu:
         "Do you tell them now?"
@@ -546,15 +526,12 @@ label early_truth_reveal:
     $ remember("truth_reveal_timing", "early")
     
     player "I saw two students..."
-    pause 0.5
     player "In the library. Late."
-    pause 0.5
     player "They were... arguing. About something."
     
     parent "And?"
     
     player "One of them had... evidence. Of something."
-    pause 0.5
     player "Against a professor."
     
     $ insights_unlocked.append("Academic corruption is involved")
@@ -569,20 +546,16 @@ label postpone_truth:
     $ remember("truth_reveal_timing", "postponed")
     
     player "I need to think about this."
-    pause 0.5
     player "Make sure I remember it correctly."
     
     parent "You have until tonight."
-    pause 0.5
     parent "After that, I'm calling the dean myself."
     
     jump confrontation_aftermath
 
 label confrontation_aftermath:
     parent "This is serious, [persistent.player_name]."
-    pause 0.5
     parent "Whatever you saw, whatever you know..."
-    pause 0.5
     parent "It's going to come out."
     
     pause 1.0
@@ -593,7 +566,6 @@ label confrontation_aftermath:
     
     "[parent_pronoun_subject.capitalize()] leaves you alone at the table."
     
-    pause 1.0
     
     "Your phone buzzes."
     play sound "audio/sfx/phone_buzz.wav"
@@ -613,7 +585,6 @@ label act1_cliffhanger:
     
     "Back in your room, you finally check your phone."
     
-    pause 1.0
     
     "A new message."
     "From the unknown number."
@@ -634,7 +605,6 @@ label act1_cliffhanger:
     "Your laptop is still open."
     "One unread email."
     
-    pause 1.0
     
     "You click it."
     
@@ -644,15 +614,12 @@ label act1_cliffhanger:
     
     "Subject: The Truth About You"
     
-    pause 2.0
     
     "Attached: One video file."
     
-    pause 2.0
     
     "Your hand hovers over the trackpad."
     
-    pause 1.5
     
     "You click play."
     
@@ -668,19 +635,15 @@ label act1_cliffhanger:
     
     "..."
     
-    pause 2.0
     
     "No."
     
-    pause 1.0
     
-    "No no no no no."
+    "My name is still on it."
     
-    pause 2.0
     
     "They weren't supposed to have this."
     
-    pause 2.0
     
     "How did they..."
     
@@ -691,7 +654,6 @@ label act1_cliffhanger:
     
     "Your phone rings."
     
-    pause 1.0
     
     "Unknown number."
     
@@ -717,13 +679,15 @@ label end_of_chapter_1:
     pause 1.0
     
     centered "{size=48}CHAPTER 1 COMPLETE{/size}"
-    pause 1.5
     centered "Your choices have been recorded. The story continues now."
     pause 1.5
 
     $ current_chapter = 2
     $ renpy.save("act1_checkpoint")
 
+    jump chapter_1_options
+
+label chapter_1_options:
     menu:
         "What would you like to do?"
 
@@ -731,11 +695,8 @@ label end_of_chapter_1:
             jump act2_opening
 
         "View Records":
-            show screen records_sidebar
-            "Press ESC when done viewing."
-            pause
-            hide screen records_sidebar
-            jump end_of_chapter_1
+            call screen records_sidebar(from_story=True)
+            jump chapter_1_options
 
         "Save & Exit":
             $ MainMenu()()
@@ -756,7 +717,6 @@ label season2_teaser:
     
     "???" "You thought it was over?"
     
-    pause 1.0
     
     "???" "It's only just beginning."
     
@@ -766,9 +726,7 @@ label season2_teaser:
     stop music fadeout 2.0
     
     centered "{size=48}PARALLEL WORLDS{/size}"
-    pause 1.0
     centered "{size=32}SEASON 2{/size}"
-    pause 1.0
     centered "COMING SOON"
     
     pause 2.0
