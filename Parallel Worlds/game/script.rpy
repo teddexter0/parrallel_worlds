@@ -30,6 +30,9 @@ label start:
 ## INITIAL SETUP
 ## ==========================================
 
+## Saves made during setup may resume after the name prompt.
+default player_name = ""
+
 label show_disclaimer:
     scene black
 
@@ -44,7 +47,6 @@ label player_setup:
     scene bg room_night
 
     $ player_name = renpy.input("What should the story call you?", default="Alex", length=24, exclude="{}[]")
-    $ setup_name = player_name.strip() or "Alex"
 
     menu:
         "How should the story frame your character?"
@@ -79,7 +81,7 @@ label player_setup:
             $ persistent.parent_pronoun_object = "them"
             $ persistent.parent_pronoun_possessive = "their"
 
-    $ persistent.player_name = setup_name
+    $ persistent.player_name = player_name.strip() or "Alex"
     $ parent_name = persistent.parent_name
     $ parent_pronoun_subject = persistent.parent_pronoun_subject
     $ parent_pronoun_object = persistent.parent_pronoun_object
